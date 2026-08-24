@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My dashboard — SwapLabs</title>
+    <meta name="description" content="Your SwapLabs sessions, skill matches, messages, requests, credits, and learning progress in one place.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body class="member-portal-body">
+
+    <div data-site-header></div>
+
+    <main class="member-portal" data-member-portal="dashboard">
+
+      <section class="member-portal-hero">
+        <div class="container dashboard-hero-grid">
+          <div>
+            <span class="eyebrow"><i class="bx bx-grid-alt"></i> Your learning command center</span>
+            <h1>Welcome back, <span data-dashboard-first-name>member</span>.</h1>
+            <p>See what needs attention, prepare for sessions, and turn your next skill goal into a clear action.</p>
+          </div>
+          <div class="dashboard-hero-actions">
+            <span class="dashboard-date" data-dashboard-date></span>
+            <a class="btn" href="calendar.html"><i class="bx bx-plus"></i> Schedule session</a>
+            <a class="btn btn-primary" href="skill-matching.html"><i class="bx bx-radar"></i> Find a match</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section member-portal-section">
+        <div class="container">
+          <div class="portal-loading" id="dashboardLoading"><i class="bx bx-loader-alt bx-spin"></i><span>Building your personal dashboard…</span></div>
+          <div class="portal-locked" id="dashboardLocked" hidden>
+            <span class="portal-locked-icon"><i class="bx bx-lock-alt"></i></span>
+            <h2>Your dashboard is ready after login</h2>
+            <p>Sign in to see your real sessions, matches, credits, requests, messages, and progress.</p>
+            <div class="portal-empty-actions"><a class="btn btn-primary" href="login.html">Log in</a><a class="btn" href="register.html">Create account</a></div>
+          </div>
+
+          <div id="dashboardPortal" hidden>
+
+            <section class="onboarding-demo" id="dashboardOnboarding" aria-labelledby="dashboardTourTitle">
+              <div class="onboarding-copy">
+                <span class="portal-kicker">One-minute orientation</span>
+                <h2 id="dashboardTourTitle">Your next useful action is never far away.</h2>
+                <p>Use this short walkthrough to understand how SwapLabs connects matching, scheduling, messages, and progress.</p>
+                <div class="onboarding-controls" role="tablist" aria-label="Dashboard tour">
+                  <button class="onboarding-step active" type="button" data-onboarding-step="0"><span>1</span> Discover</button>
+                  <button class="onboarding-step" type="button" data-onboarding-step="1"><span>2</span> Connect</button>
+                  <button class="onboarding-step" type="button" data-onboarding-step="2"><span>3</span> Progress</button>
+                </div>
+              </div>
+              <div class="onboarding-stage">
+                <article class="onboarding-panel active" data-onboarding-panel="0"><i class="bx bx-radar"></i>
+                  <div><strong>Review explainable matches</strong>
+                    <p>Every score shows the exact skill, schedule, language, style, and trust factors behind it.</p>
+                  </div>
+                </article>
+                <article class="onboarding-panel" data-onboarding-panel="1"><i class="bx bx-message-square-dots"></i>
+                  <div><strong>Message, then schedule</strong>
+                    <p>Open a real conversation, agree on scope, and add the same session to both members’ calendars.</p>
+                  </div>
+                </article>
+                <article class="onboarding-panel" data-onboarding-panel="2"><i class="bx bx-line-chart"></i>
+                  <div><strong>Build an evidence trail</strong>
+                    <p>Completed sessions, reliability, learning goals, and credit history make your progress visible to you.</p>
+                  </div>
+                </article>
+                <button class="btn btn-sm" id="finishDashboardTour" type="button"><i class="bx bx-check"></i> Finish tour</button>
+              </div>
+            </section>
+
+            <section class="dashboard-stat-grid" aria-label="Account summary">
+              <a class="dashboard-stat-card" href="credits.html"><span class="dashboard-stat-icon blue"><i class="bx bx-wallet"></i></span>
+                <div><small>Credit balance</small><strong data-summary="credit_balance">0</strong><span>View immutable ledger</span></div>
+              </a>
+              <a class="dashboard-stat-card" href="notifications.html"><span class="dashboard-stat-icon pink"><i class="bx bx-user-check"></i></span>
+                <div><small>Pending requests</small><strong data-summary="pending_requests">0</strong><span>Review in Inbox</span></div>
+              </a>
+              <a class="dashboard-stat-card" href="notifications.html"><span class="dashboard-stat-icon purple"><i class="bx bx-message-square-dots"></i></span>
+                <div><small>Unread messages</small><strong data-summary="unread_messages">0</strong><span>Continue conversations</span></div>
+              </a>
+              <a class="dashboard-stat-card" href="learning-paths.html"><span class="dashboard-stat-icon indigo"><i class="bx bx-target-lock"></i></span>
+                <div><small>Goal progress</small><strong><span data-summary="goal_progress">0</span>%</strong><span>See learning plan</span></div>
+              </a>
+            </section>
+
+            <div class="dashboard-primary-grid">
+
+              <section class="dashboard-panel next-action-panel" id="dashboardNextAction">
+                <div class="panel-heading">
+                  <div><span class="portal-kicker">Suggested next action</span>
+                    <h2>A focused step for today</h2>
+                  </div><i class="bx bx-compass"></i>
+                </div>
+                <div data-next-action></div>
+              </section>
+
+              <section class="dashboard-panel goal-panel">
+                <div class="panel-heading">
+                  <div><span class="portal-kicker">Learning goal</span>
+                    <h2>Your current direction</h2>
+                  </div><a href="profile.html">Edit goal</a>
+                </div>
+                <div data-learning-goal></div>
+              </section>
+            </div>
+
+            <section class="dashboard-panel dashboard-wide-panel">
+              <div class="panel-heading">
+                <div><span class="portal-kicker">Recommended people</span>
+                  <h2>Your strongest skill matches</h2>
+                  <p>Real members ranked using the preferences and availability saved to your account.</p>
+                </div><a class="btn btn-sm" href="skill-matching.html">Tune matching <i class="bx bx-right-arrow-alt"></i></a>
+              </div>
+              <div class="dashboard-match-grid" id="dashboardMatches"></div>
+            </section>
+
+            <div class="dashboard-secondary-grid">
+
+              <section class="dashboard-panel">
+                <div class="panel-heading">
+                  <div><span class="portal-kicker">Calendar</span>
+                    <h2>Upcoming sessions</h2>
+                  </div><a href="calendar.html">Open calendar</a>
+                </div>
+                <div class="dashboard-list" id="dashboardSessions"></div>
+              </section>
+
+              <section class="dashboard-panel">
+                <div class="panel-heading">
+                  <div><span class="portal-kicker">Inbox</span>
+                    <h2>Recent messages</h2>
+                  </div><a href="notifications.html">Open Inbox</a>
+                </div>
+                <div class="dashboard-list" id="dashboardMessages"></div>
+              </section>
+            </div>
+
+            <section class="dashboard-panel dashboard-discovery-panel">
+              <div class="panel-heading">
+                <div><span class="portal-kicker">Explore the platform</span>
+                  <h2>Continue from anywhere</h2>
+                </div>
+                <div class="live-platform-metrics"><span><strong data-platform-metric="active_members">—</strong> active members</span><span><strong data-platform-metric="skills">—</strong> listed skills</span></div>
+              </div>
+              <div class="dashboard-quick-grid">
+                <a href="browse-skills.html"><i class="bx bx-search-alt"></i><strong>Browse skills</strong><span>Explore the live skill directory</span></a>
+                <a href="workshops.html"><i class="bx bx-chalkboard"></i><strong>Join a workshop</strong><span>Learn in a guided small group</span></a>
+                <a href="community.html"><i class="bx bx-group"></i><strong>Meet members</strong><span>Search real community profiles</span></a>
+                <a href="skill-innovation.html"><i class="bx bx-bulb"></i><strong>Build an idea</strong><span>Find support and collaborators</span></a>
+                <a href="credits.html"><i class="bx bx-receipt"></i><strong>Review credits</strong><span>Trace every balance change</span></a>
+                <a href="profile.html"><i class="bx bx-slider-alt"></i><strong>Tune your account</strong><span>Improve your matching signals</span></a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+
+    <script src="swaplabs-dashboard.js"></script>
+  </body>
+
+</html>

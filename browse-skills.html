@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Browse Skills — SwapLabs</title>
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main>
+
+      <section class="page-hero">
+        <div class="container"><span class="eyebrow">Skill marketplace</span>
+          <h1>Find something worth learning.</h1>
+          <p>Search active teachers and match their expertise with something you can share in return.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="filter-row"><input class="search-input" id="skillSearch" placeholder="Search skills, teachers, or topics"><select id="skillCategory">
+              <option value="all">All categories</option>
+              <option value="technology">Technology</option>
+              <option value="creative">Creative</option>
+              <option value="languages">Languages</option>
+              <option value="wellness">Wellness</option>
+            </select><select>
+              <option>Any level</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select><button class="btn" id="skillReset">Reset</button></div>
+          <div class="skill-list">
+            <article class="card skill-card" data-category="technology">
+              <div class="tags"><span class="tag">Technology</span><span class="tag">Beginner friendly</span></div>
+              <h3>Python fundamentals</h3>
+              <p>Projects, debugging, APIs, and practical automation.</p>
+              <div class="skill-footer">
+                <div class="person"><span class="avatar">AR</span>
+                  <div><strong>Alex R.</strong><small>4.9 · 84 sessions</small></div>
+                </div><button class="btn btn-sm btn-primary">Request swap</button>
+              </div>
+            </article>
+            <article class="card skill-card" data-category="creative">
+              <div class="tags"><span class="tag">Creative</span><span class="tag">Remote</span></div>
+              <h3>Figma &amp; product design</h3>
+              <p>Interface design, prototypes, systems, and critique.</p>
+              <div class="skill-footer">
+                <div class="person"><span class="avatar">MV</span>
+                  <div><strong>Maya V.</strong><small>5.0 · 61 sessions</small></div>
+                </div><button class="btn btn-sm btn-primary">Request swap</button>
+              </div>
+            </article>
+            <article class="card skill-card" data-category="languages">
+              <div class="tags"><span class="tag">Languages</span><span class="tag">Conversation</span></div>
+              <h3>Spanish conversation</h3>
+              <p>Natural speaking practice for beginner and intermediate learners.</p>
+              <div class="skill-footer">
+                <div class="person"><span class="avatar">DL</span>
+                  <div><strong>Diego L.</strong><small>4.8 · 102 sessions</small></div>
+                </div><button class="btn btn-sm btn-primary">Request swap</button>
+              </div>
+            </article>
+            <article class="card skill-card" data-category="creative">
+              <div class="tags"><span class="tag">Creative</span><span class="tag">Local or remote</span></div>
+              <h3>Portrait photography</h3>
+              <p>Composition, light, posing, and approachable editing.</p>
+              <div class="skill-footer">
+                <div class="person"><span class="avatar">JL</span>
+                  <div><strong>Jonas L.</strong><small>4.9 · 47 sessions</small></div>
+                </div><button class="btn btn-sm btn-primary">Request swap</button>
+              </div>
+            </article>
+            <article class="card skill-card" data-category="wellness">
+              <div class="tags"><span class="tag">Wellness</span><span class="tag">All levels</span></div>
+              <h3>Yoga foundations</h3>
+              <p>Mobility, alignment, breathwork, and sustainable practice.</p>
+              <div class="skill-footer">
+                <div class="person"><span class="avatar">NK</span>
+                  <div><strong>Nina K.</strong><small>4.9 · 69 sessions</small></div>
+                </div><button class="btn btn-sm btn-primary">Request swap</button>
+              </div>
+            </article>
+            <article class="card skill-card" data-category="technology">
+              <div class="tags"><span class="tag">Technology</span><span class="tag">Intermediate</span></div>
+              <h3>Data storytelling</h3>
+              <p>Turn analysis into clear visuals, narratives, and decisions.</p>
+              <div class="skill-footer">
+                <div class="person"><span class="avatar">SC</span>
+                  <div><strong>Sofia C.</strong><small>4.8 · 38 sessions</small></div>
+                </div><button class="btn btn-sm btn-primary">Request swap</button>
+              </div>
+            </article>
+            <div class="empty-state" id="skillEmpty">No skills match those filters yet.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

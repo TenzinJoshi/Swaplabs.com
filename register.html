@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Create account — SwapLabs</title>
+    <meta name="description" content="Create a detailed SwapLabs member profile.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="account-main" data-auth-page="register">
+
+      <section class="account-hero">
+        <div class="container account-hero-grid">
+          <div><span class="eyebrow">Member registration</span>
+            <h1>Build a profile that leads to useful matches.</h1>
+            <p>Tell the community what you can teach, what you want to learn, and how you prefer to work. Every detail can be updated later from your profile panel.</p>
+          </div>
+          <div class="account-security-note"><i class="bx bx-data"></i>
+            <div><strong>Your account, your profile</strong><span>New registrations always receive member access. Administrator privileges cannot be requested or added from this form.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="account-section">
+        <div class="container">
+          <div class="server-required" data-server-required><strong>Start the SwapLabs Python server first.</strong> Registration requires the local application server.</div>
+          <form id="registrationForm" class="account-form">
+
+            <section class="form-section">
+              <div class="form-section-head"><i class="bx bx-user-circle"></i>
+                <div>
+                  <h2>Account identity</h2>
+                  <p>Your private sign-in details and public display name.</p>
+                </div>
+              </div>
+              <div class="form-grid three">
+                <div class="field"><label>First name</label><input name="first_name" autocomplete="given-name" required></div>
+                <div class="field"><label>Last name</label><input name="last_name" autocomplete="family-name" required></div>
+                <div class="field"><label>Display name</label><input name="display_name" required placeholder="How members should address you"></div>
+                <div class="field"><label>Username</label><input name="username" autocomplete="username" required pattern="[A-Za-z0-9._-]{3,30}" placeholder="letters, numbers, dots or dashes"><small>Between 3 and 30 characters.</small></div>
+                <div class="field"><label>Email address</label><input name="email" type="email" autocomplete="email" required></div>
+                <div class="field"><label>Pronouns</label><input name="pronouns" data-option-list="pronouns" placeholder="Choose or type your own"></div>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-head"><i class="bx bx-image-add"></i>
+                <div>
+                  <h2>Profile photo</h2>
+                  <p>Upload the image that will represent you in navigation, community search, requests, and notifications.</p>
+                </div>
+              </div>
+              <div class="photo-upload-layout">
+                <div class="profile-photo-preview" id="registrationPhotoPreview"><i class="bx bx-user"></i></div>
+                <div><label class="photo-upload-control" for="registrationPhoto"><i class="bx bx-upload"></i><span><strong>Choose a profile picture</strong><small>JPG, PNG, or WebP up to 4 MB. You can replace it later.</small></span></label><input class="visually-hidden" id="registrationPhoto" name="profile_photo" type="file" accept="image/jpeg,image/png,image/webp">
+                  <p class="muted" style="font-size:.72rem">If you skip this step, SwapLabs will use your initials and selected profile accent.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-head"><i class="bx bx-map"></i>
+                <div>
+                  <h2>Personal details</h2>
+                  <p>Used to personalize schedules, matching, and your member card.</p>
+                </div>
+              </div>
+              <div class="form-grid three">
+                <div class="field"><label>Date of birth</label><input name="date_of_birth" type="date" required></div>
+                <div class="field"><label>Age</label><select name="age" data-age-select required>
+                    <option value="">Select age</option>
+                  </select></div>
+                <div class="field"><label>Country</label><input name="country" data-option-list="countries" autocomplete="country-name" required placeholder="Choose or type a country"></div>
+                <div class="field"><label>City</label><input name="city" autocomplete="address-level2"></div>
+                <div class="field"><label>Timezone</label><input name="timezone" data-option-list="timezones" placeholder="Choose or type a timezone"></div>
+                <div class="field"><label>Primary language</label><input name="primary_language" data-option-list="languages" required value="English"></div>
+                <div class="field full"><label>Additional languages</label><input name="additional_languages" data-multi-options="languages" placeholder="Search and add languages, separated with commas"></div>
+              </div>
+            </section>
+
+            <section class="form-section student-safety-section" id="registrationSafety" hidden>
+              <div class="form-section-head"><i class="bx bx-shield-quarter"></i>
+                <div>
+                  <h2>Student safety and guardian consent</h2>
+                  <p>Members under 18 receive a private profile, connection-only messaging, and specialist review for Innovation Lab submissions.</p>
+                </div>
+              </div>
+              <div class="student-safety-notice">
+                <i class="bx bx-lock-alt"></i>
+                <div>
+                  <strong>Privacy-first student account</strong>
+                  <p>Your exact age, city, timezone, organization, and website are not shown to other members. A guardian must confirm this registration.</p>
+                </div>
+              </div>
+              <div class="form-grid three">
+                <div class="field"><label>Parent or guardian name</label><input name="guardian_name" maxlength="120" autocomplete="name"></div>
+                <div class="field"><label>Parent or guardian email</label><input name="guardian_email" type="email" maxlength="120" autocomplete="email"></div>
+                <div class="field"><label>Relationship</label><select name="guardian_relationship">
+                    <option value="">Choose relationship</option>
+                    <option value="parent">Parent</option>
+                    <option value="legal guardian">Legal guardian</option>
+                    <option value="grandparent">Grandparent</option>
+                    <option value="adult sibling">Adult sibling</option>
+                    <option value="foster carer">Foster carer</option>
+                    <option value="other guardian">Other guardian</option>
+                  </select></div>
+              </div>
+              <label class="terms-row guardian-consent-row"><input name="guardian_consent_declared" type="checkbox"><span>I am the named parent or guardian, I consent to this student account, and I understand that SwapLabs administrators may verify this consent for safeguarding.</span></label>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-head"><i class="bx bx-briefcase-alt-2"></i>
+                <div>
+                  <h2>Professional profile</h2>
+                  <p>Choose from comprehensive suggestions or type any occupation and role that fits you.</p>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="field"><label>Occupation</label><input name="occupation" data-option-list="occupations" autocomplete="organization-title" placeholder="Choose or type an occupation"></div>
+                <div class="field"><label>Professional role or seniority</label><input name="professional_role" data-option-list="roles" placeholder="Choose or type a role"></div>
+                <div class="field"><label>Organization</label><input name="organization" autocomplete="organization"></div>
+                <div class="field"><label>Website or portfolio</label><input name="website" type="url" placeholder="https://"></div>
+                <div class="field full"><label>Profile headline</label><input name="headline" maxlength="140" placeholder="A short line about what you share and value"></div>
+                <div class="field full"><label>About you</label><textarea name="bio" maxlength="700" placeholder="Describe your experience, teaching style, and what makes a useful exchange for you."></textarea></div>
+                <div class="field"><label>Profile accent</label><select name="profile_color">
+                    <option value="indigo">Indigo</option>
+                    <option value="blue">Blue</option>
+                    <option value="pink">Pink</option>
+                    <option value="purple">Purple</option>
+                  </select></div>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-head"><i class="bx bx-book-reader"></i>
+                <div>
+                  <h2>Learning and teaching</h2>
+                  <p>These details power explainable matching and the read-only member directory.</p>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="field"><label>Skills you can teach</label><input name="skills_to_teach" required placeholder="Python, photography, guitar"></div>
+                <div class="field"><label>Skills you want to learn</label><input name="skills_to_learn" required placeholder="Figma, French, public speaking"></div>
+                <div class="field"><label>Experience or proficiency level</label><select name="experience_level">
+                    <option>Beginner</option>
+                    <option selected>Intermediate</option>
+                    <option>Advanced</option>
+                    <option>Expert</option>
+                  </select></div>
+                <div class="field"><label>Preferred format</label><select name="preferred_format">
+                    <option>Remote or local</option>
+                    <option>Remote only</option>
+                    <option>Local only</option>
+                    <option>Group sessions</option>
+                    <option>One-to-one sessions</option>
+                    <option>Flexible</option>
+                  </select></div>
+                <div class="field"><label>Teaching style</label><select name="teaching_style">
+                    <option>Project-based</option>
+                    <option>Structured lessons</option>
+                    <option>Conversational</option>
+                    <option>Demonstration first</option>
+                    <option>Practice and feedback</option>
+                    <option>Flexible</option>
+                  </select></div>
+                <div class="field"><label>Availability</label><input name="availability" placeholder="Weekday evenings, weekends"></div>
+                <div class="field"><label>Interests</label><input name="interests" placeholder="Community learning, design, technology"></div>
+                <div class="field full"><label>Main learning goal</label><textarea name="learning_goal" placeholder="What would meaningful progress look like over the next three months?"></textarea></div>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-head"><i class="bx bx-slider-alt"></i>
+                <div>
+                  <h2>Privacy and updates</h2>
+                  <p>Choose how much the community can see and which updates you receive.</p>
+                </div>
+              </div>
+              <div class="visibility-choice-grid"><label class="visibility-choice"><input name="profile_visibility" type="radio" value="public" checked><i class="bx bx-world"></i><span><strong>Public profile</strong><small>Everyone can view your community profile and follows are accepted immediately.</small></span></label><label class="visibility-choice"><input name="profile_visibility" type="radio" value="private"><i class="bx bx-lock-alt"></i><span><strong>Private profile</strong><small>Only basics are shown until you accept a follow request in Notifications.</small></span></label></div>
+              <div class="check-grid"><label class="check-row"><input name="match_visibility" type="checkbox" checked><span><strong>Appear in skill matching</strong><span>Allow active members to discover your profile.</span></span></label><label class="check-row"><input name="show_location" type="checkbox" checked><span><strong>Show general location</strong><span>Display your city and country, never a precise address.</span></span></label><label class="check-row"><input name="email_notifications" type="checkbox" checked><span><strong>Account notifications</strong><span>Receive important account and safety messages.</span></span></label><label class="check-row"><input name="weekly_digest" type="checkbox" checked><span><strong>Weekly learning digest</strong><span>Receive new matches, sessions, and resource highlights.</span></span></label></div>
+            </section>
+
+            <section class="form-section">
+              <div class="form-section-head"><i class="bx bx-lock-alt"></i>
+                <div>
+                  <h2>Secure your account</h2>
+                  <p>Use at least ten characters with upper and lowercase letters, a number, and a symbol.</p>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="field field-row-action"><label>Password</label><input id="registrationPassword" name="password" type="password" autocomplete="new-password" required minlength="10"><button class="password-toggle" type="button" data-password-toggle="registrationPassword" aria-label="Show password"><i class="bx bx-show"></i></button></div>
+                <div class="field field-row-action"><label>Confirm password</label><input id="registrationConfirm" name="confirm_password" type="password" autocomplete="new-password" required minlength="10"><button class="password-toggle" type="button" data-password-toggle="registrationConfirm" aria-label="Show password"><i class="bx bx-show"></i></button></div>
+              </div><label class="terms-row"><input name="terms" type="checkbox" required><span>I agree to the <a href="terms.html">Terms</a> and understand the <a href="privacy.html">Privacy Policy</a>.</span></label>
+              <div class="form-actions"><span class="muted">Already registered? <a href="login.html" style="color:var(--indigo);font-weight:700">Log in</a></span><button class="btn btn-primary" type="submit"><i class="bx bx-user-plus"></i> Create member account</button></div>
+              <div class="form-status" data-status></div>
+            </section>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

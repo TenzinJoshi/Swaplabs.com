@@ -1,0 +1,808 @@
+SWAPLABS — COMPLETE PROJECT, OPERATION, AND DEPLOYMENT GUIDE
+============================================================
+
+Version covered by this guide: local JSON-store platform version 9
+Default local URL: http://127.0.0.1:8765/swaplabs.html
+
+
+1. WHAT SWAPLABS IS
+-------------------
+
+SwapLabs is a full-stack skill-exchange community. Members describe what they can
+teach, what they want to learn, when they are available, their preferred session
+style, language, timezone, and proficiency. The platform uses those details to
+recommend compatible people, explain every match, support conversations, schedule
+sessions, track time credits, and record learning progress.
+
+The SwapLabs motto is: Learn Anything. Teach Everything.
+
+This repository is not a collection of disconnected mock-up pages. Its interactive
+features are connected to a Python/Flask API and a persistent JSON data store.
+Running the HTML files directly with file:// will not provide login, messaging,
+uploads, matching, calendar, credits, administration, or other server features.
+Always start the Python server and use an http:// or https:// address.
+
+
+2. HOW THE CONNECTED PLATFORM WORKS
+-----------------------------------
+
+The public homepage and directory help a visitor understand the network. After
+login, Dashboard becomes the second homepage and combines real account data from
+matching, sessions, credits, requests, conversations, and learning goals. Members
+move through a connected flow:
+
+  Discover a skill or member
+    -> understand the match explanation
+    -> follow or start a conversation
+    -> schedule a shared calendar event
+    -> enter the protected live room
+    -> confirm attendance
+    -> retain progress and credit records
+
+Support forms, workshop registrations, testimonials, student ideas, message
+reports, guardian reviews, and account activity are persisted in the same store
+and made available to the correct member or administrator interface.
+
+3. TECHNOLOGY AND PROJECT STRUCTURE
+-----------------------------------
+
+Backend:
+  - Python 3
+  - Flask 3
+  - Werkzeug password hashing
+  - Signed, HTTP-only session cookies
+  - JSON persistence with atomic file replacement
+  - Gunicorn production WSGI server
+
+Frontend:
+  - Semantic HTML
+  - CSS custom properties and responsive media queries
+  - Vanilla JavaScript
+  - Boxicons
+  - Fetch-based API calls with CSRF protection
+
+Important files:
+  swaplabs_server.py        Main Flask application and API
+  wsgi.py                   Production WSGI entry point
+  swaplabs.html             Public homepage
+  dashboard.html            Authenticated member landing page
+  skill-matching.html       Explainable matching portal
+  video-room.html           Live WebRTC room, waiting room, and attendance
+  swaplabs.js               Shared navigation, footer, metrics, chatbot
+  swaplabs-auth.js          Login, registration, profile, admin integration
+  swaplabs-dashboard.js     Dashboard and matchmaking rendering
+  swaplabs-operations.js    Inbox, calendar, credits, workshops, forms, ideas
+  swaplabs-video.js         Video device checks, signalling, calls, and sharing
+  swaplabs-platform.js      Community/platform interactions
+  swaplabs-content.js       Shared page content enhancements
+  swaplabs-more-content.js  Additional content sections
+  swaplabs-options.js       Large registration/profile option datasets
+  requirements.txt          Python packages
+  start_swaplabs.command    macOS local launcher
+  data/users.json           Main persistent data store
+  data/uploads/             Profile photographs
+  data/message_uploads/     Message attachments, created when needed
+  data/.session_secret      Auto-generated local session secret
+  test_operations.py        Operations tests
+  test_dashboard_matching.py Dashboard, metrics, and matching tests
+  test_video_privacy_safety.py Video, data rights, bot privacy, and minor-safety tests
+
+CSS is organized into five modules and loaded through swaplabs.css:
+  styles/tokens.css         Colors, text contexts, spacing, radius, shadows
+  styles/base.css           Reset, typography, forms, core sections
+  styles/components.css     Shared reusable interface components
+  styles/layout.css         Grids, expansion sections, responsive layout
+  styles/pages.css          Page-specific, dark-mode, inbox, dashboard rules
+
+Older styles are retained only for reference in styles/legacy/. They are not the
+active styling system and should not be linked from pages.
+
+
+4. WEBSITE PAGES
+----------------
+
+Main and account:
+  swaplabs.html             Homepage and live platform statistics
+  dashboard.html            Member command center after login
+  login.html                Member and administrator login
+  register.html             Detailed account registration
+  profile.html              Profile, preferences, privacy, theme, password
+  notifications.html        Full inbox and follow-request workspace
+  calendar.html             Availability and session calendar
+  credits.html              Time-credit ledger, transfers, and disputes
+  admin.html                Protected administration panel
+
+Platform:
+  browse-skills.html        Browse skill categories and listings
+  skill-matching.html       Multi-factor member matching
+  learning-paths.html       Structured progression paths
+  skill-assessments.html    Skill-level assessments
+  live-sessions.html        Live learning session discovery
+  video-room.html           Protected live video-session room
+  skill-innovation.html     Student ideas, funding, comments, likes, saves
+  how-it-works.html         Platform process
+  pricing.html              Plans and pricing presentation
+  faq.html                  Frequently asked questions
+
+Community:
+  community.html            Searchable real-member directory
+  forums.html               Discussion forums
+  groups.html               Interest groups
+  leaderboards.html         Community rankings
+  community-challenges.html Monthly collaboration challenges
+  blog.html                 Articles
+  events.html               Events
+  mentors.html              Mentor directory
+  success-stories.html      Member outcomes
+
+Learning:
+  courses.html              Course catalogue
+  resources.html            Guides, tools, templates, tutorials
+  workshops.html            Workshop discovery and registration
+  certifications.html       Certificates and achievement badges
+
+Professional:
+  become-a-mentor.html      Mentor application information
+  talent-directory.html     Professional talent search
+  projects.html             Collaborative projects
+  partner-with-us.html      Schools, companies, and organization partnerships
+
+Company and support:
+  about.html                Company and platform overview
+  careers.html              Careers
+  privacy.html              Privacy information
+  terms.html                Terms
+  help-center.html          Help resources
+  contact.html              Contact form
+  complaint.html            Formal complaints
+  feedback.html             Feedback and homepage testimonials
+  report.html               Safety report page
+
+
+5. USER ROLES AND PERMISSIONS
+-----------------------------
+
+Guest:
+  - Can view public pages and public platform statistics.
+  - Can browse public educational and marketing content.
+  - Must log in for private member operations.
+
+Member:
+  - Can edit only their own profile, photo, password, preferences, and privacy.
+  - Can use matching, messaging, calendar, credits, workshops, and innovation.
+  - Can follow public profiles or request access to private profiles.
+  - Cannot edit another member's stored account data or admin annotations.
+
+Administrator:
+  - Uses the separate administrator login form and administrator ID.
+  - Can view account and operational records.
+  - Can add private admin notes and verification/moderation labels.
+  - Can adjust credits, verify members, restrict messaging, suspend/reactivate,
+    and permanently delete member accounts.
+  - Can inspect a conversation when that conversation has been reported.
+  - Can moderate reported messages, complaints, feedback, ideas, and disputes.
+  - Can edit or delete submitted innovation ideas and other managed content.
+
+
+6. DEMONSTRATION ACCOUNTS
+-------------------------
+
+These credentials are for local demonstration only. Change them before exposing
+the application to the public.
+
+Administrator:
+  Administrator ID: SWAPLABS-ADMIN-2026
+  Password:         SwapLabsAdmin#2026
+
+Members:
+  maya.chen / maya@swaplabs.local / MayaSkill#2026
+  liam.carter / liam@swaplabs.local / LiamSkill#2026
+  sofia.martin / sofia@swaplabs.local / SofiaSkill#2026
+  arjun.patel / arjun@swaplabs.local / ArjunSkill#2026
+
+Members may log in with username or email. After signing in, change a password in
+Profile > Security. The administrator password can also be changed while logged in
+as the administrator. Never publish this guide with unchanged demo credentials on
+a public deployment.
+
+
+7. HOW TO RUN LOCALLY
+---------------------
+
+macOS quick start:
+  1. Open the project folder.
+  2. Double-click start_swaplabs.command.
+  3. Open http://127.0.0.1:8765/swaplabs.html.
+
+Terminal start on macOS/Linux:
+  cd "/Users/tenzin/Desktop/Design Championship 2026"
+  python3 -m venv .venv
+  source .venv/bin/activate
+  python -m pip install --upgrade pip
+  pip install -r requirements.txt
+  python swaplabs_server.py
+
+Windows PowerShell:
+  py -m venv .venv
+  .venv\Scripts\Activate.ps1
+  py -m pip install --upgrade pip
+  pip install -r requirements.txt
+  py swaplabs_server.py
+
+Stop the server with Control-C in the terminal that started it.
+
+To use another port:
+  SWAPLABS_PORT=9000 python swaplabs_server.py
+
+To allow other devices on the same trusted network:
+  SWAPLABS_HOST=0.0.0.0 python swaplabs_server.py
+
+Then open http://YOUR-COMPUTER-IP:8765/ from the other device. Do not expose the
+Flask development server directly to the public internet.
+
+
+8. HOW A MEMBER OPERATES THE WEBSITE
+------------------------------------
+
+Registration:
+  1. Open Create account.
+  2. Enter identity, username, email, password, location, timezone, languages,
+     occupation, role, teaching skills, learning skills, proficiency, goals,
+     teaching style, preferred session format, and privacy choice.
+  3. Optionally upload a profile photograph.
+  4. Submit. The member is authenticated and sent to the dashboard.
+
+Dashboard:
+  - Review upcoming sessions, recommended matches, credit balance, pending
+    requests, recent conversations, goal progress, and the suggested next action.
+  - Use the short onboarding tour to understand discovery, connection, and
+    progress. Tour completion is saved to the member account.
+
+Profile and settings:
+  - Edit personal information, biography, location, languages, professional data,
+    learning goals, skills, availability summary, teaching style, and format.
+  - Set the profile to public or private.
+  - Choose light or dark mode. The selection is applied across the website and
+    persists in the account.
+  - Configure font scale, contrast, reduced motion, navigation, content density,
+    link underlines, AI assistant visibility, notifications, and default landing.
+  - Change or remove the profile photograph and change the account password.
+  - Set separate general, message, and session-history retention periods.
+  - Download a complete account JSON export and a CSV session history.
+  - Apply retention cleanup immediately or permanently delete the account after
+    password and exact-text confirmation.
+
+Matching:
+  1. Open Skill matching.
+  2. Enter the skill to learn and skill to teach.
+  3. Select proficiency, learning goal, teaching style, session format, timezone,
+     language, and strict/broad matching.
+  4. Run matching.
+  5. Review each real member preview, availability, skill category, trust history,
+     total score, and the expandable Why this match? factor explanation.
+  6. Open a profile or start a conversation. If strict matching has no result,
+     use the empty-state action to broaden the search.
+
+The score considers skill compatibility, proficiency, learning goals, teaching
+style, session format, timezone overlap, availability overlap, language, member
+rating, completion history, and reliability. Explanations are returned with the
+result so the score is inspectable rather than mysterious.
+
+Community and privacy:
+  - Search real accounts by name, username, skill, country, or role.
+  - Public profiles show the member's permitted details immediately.
+  - Private profiles show only basic identity information until a follow request
+    is accepted.
+  - Follow requests appear in the Inbox and may be accepted or declined.
+
+Inbox:
+  - Search conversations, start a chat with another member, send text or an
+    attachment, and see typing/read state information.
+  - Every scheduled one-to-one or group meeting creates a dedicated meeting
+    thread shared by the host and every selected participant. The thread contains
+    the full time, timezone, host, attendee, location, live-room, and export details.
+  - Rescheduling, ordinary meeting edits, and cancellations appear in that same
+    shared thread for every member instead of being visible only to the host.
+  - Mute, block, unblock, or report a conversation/user.
+  - A report creates an administrator safety record. Reported conversation context
+    is available to the administrator for moderation.
+  - SwapBot receives basic platform notices, reminders, and safety updates. It does
+    not copy another member's message or attachment into the assistant chat. New
+    message notifications contain only the sender identity and an instruction to
+    open the direct conversation.
+
+Calendar:
+  - Configure weekly availability.
+  - Create a one-to-one or group session with another account.
+  - The host and every invited participant receive the same event data, calendar
+    entry, detailed Inbox thread, and subsequent schedule updates.
+  - Reschedule or cancel according to the available controls.
+  - Download an ICS calendar file for Google Calendar, Outlook, Apple Calendar,
+    or another compatible calendar application.
+
+Live video sessions:
+  1. Schedule a session in Calendar or register for a workshop.
+  2. Open Live sessions to see the real events attached to the signed-in account.
+  3. Select Prepare/Open live room.
+  4. Allow the browser to check the camera and microphone. Choose devices and
+     review network readiness before requesting entry.
+  5. The host admits or declines members from the waiting room.
+  6. Participants can use microphone, camera, screen sharing, and live connection
+     quality indicators during the browser-to-browser call.
+  7. The member confirms attendance; the host confirms each participant. The
+     result appears in downloadable session history.
+
+Camera, microphone, and screen sharing require localhost or HTTPS. SwapLabs uses
+browser WebRTC with Flask-based signalling and does not use an external video API
+by default. Media is not recorded or stored. Connections across restrictive NATs
+may require a production STUN/TURN service configured through
+window.SWAPLABS_ICE_SERVERS. Multi-person calls use a peer mesh, which is intended
+for small SwapLabs sessions rather than large broadcasts.
+
+Credits:
+  - Review the immutable-style ledger of earnings, transfers, payments, refunds,
+    corrections, and disputes.
+  - Transfer available credits to another member.
+  - Open a dispute for administrator review.
+
+Workshops:
+  - Search and filter workshops.
+  - Register or cancel registration while seats and rules allow.
+  - Registrations are visible in member and administration data.
+
+Skills and innovation:
+  - Browse student ideas.
+  - Like, save, comment, and follow the idea owner.
+  - Submit an idea using the detailed form.
+  - Administrators can review, annotate, edit, moderate, and delete ideas.
+  - Members under 18 are private by default, require a guardian consent record,
+    can message or meet accepted connections only, and have each idea held in a
+    specialist review queue before community publication.
+
+Feedback and testimonials:
+  - Submit feedback on feedback.html.
+  - Approved/available feedback is loaded by the homepage testimonial belt.
+
+Chatbot:
+  - The SwapBot button appears at the bottom right when enabled in settings.
+  - It answers common questions about the website, navigation, matching, dashboard,
+    accounts, calendar, credits, privacy, and support.
+  - It uses typo-tolerant client-side website knowledge. It is not a general-purpose
+    cloud AI model and does not send prompts to a third-party AI service.
+  - It never mirrors the contents of a member-to-member message. Member messages
+    can only be read by conversation participants and, after a report, an
+    authorized administrator reviewing that report's evidence.
+
+
+9. HOW THE ADMINISTRATOR OPERATES THE WEBSITE
+---------------------------------------------
+
+  1. Open login.html.
+  2. Use Administrator access, not Member login.
+  3. Enter the administrator ID and password.
+  4. Open Administration from the account/navigation menu.
+
+From the admin panel:
+  - Review member totals, status, activity, reports, disputes, submissions, and
+    charts based on current stored data.
+  - Search/filter users and inspect complete account records.
+  - Add internal notes and moderation labels.
+  - Verify accounts and adjust credit balances when authorized.
+  - Suspend an account until a selected date/time and provide a reason. Suspended
+    users are logged out and cannot log in until the suspension expires or is
+    removed by an administrator.
+  - Restrict messaging separately when needed.
+  - Review reported conversation evidence and moderate individual messages.
+  - Resolve credit disputes.
+  - Edit/delete managed contact, complaint, feedback, workshop, and innovation
+    records where the admin interface provides those actions.
+  - Review guardian consent status and specialist student-idea moderation queues.
+  - Inspect video room and confirmed-attendance totals without accessing camera,
+    microphone, or screen media, which is never stored by the platform.
+  - Permanently delete a member only after confirming the exact account.
+
+Administrator actions are appended to audit_log in data/users.json.
+
+
+10. LIVE METRICS AND DATA GROWTH
+--------------------------------
+
+The homepage and shared sections no longer use fake fixed values such as 12,400+
+members or 4,800+ skills. GET /api/platform/metrics calculates values from current
+records:
+  - active_members: active, non-admin member accounts
+  - skills: unique skills currently offered by visible, active members
+  - countries: unique configured member countries
+  - hours_exchanged: verified/completed exchange time represented in session data
+
+Creating members and adding teaching skills therefore updates the displayed totals
+without editing HTML. The API also returns skill_names, which powers the homepage
+typewriter and refreshes automatically while the page remains open.
+
+
+11. DATA STORAGE AND BACKUPS
+----------------------------
+
+data/users.json stores users, profiles, preferences, safety records, workshops,
+registrations, follow requests, notifications, conversations, messages, blocks,
+reports, calendar events, availability, credits, disputes, contact messages,
+complaints, feedback, ideas, video rooms, short-lived connection signals,
+attendance confirmations, audit records, version, and update timestamp.
+
+Passwords and administrator IDs are stored as salted password hashes, not plain
+text. The demonstration passwords listed above are known only because they are
+seed credentials.
+
+Uploads are stored on disk. A complete backup must include:
+  data/users.json
+  data/.session_secret
+  data/uploads/
+  data/message_uploads/ if present
+
+Safe backup example while the application is stopped:
+  cp -R data "data-backup-$(date +%Y-%m-%d)"
+
+Restore by stopping the app, replacing data/ with a known-good backup, checking
+file ownership/permissions, and restarting the app.
+
+The JSON store is suitable for a demonstration, competition entry, school project,
+or small single-server installation. A larger public service should migrate to
+PostgreSQL or another transactional database and object storage.
+
+
+12. IMPORTANT API GROUPS
+------------------------
+
+Public/platform:
+  GET  /api/platform/metrics
+  POST /api/matches
+  GET  /api/testimonials
+  GET  /api/ideas
+
+Authentication/profile:
+  GET    /api/auth/csrf
+  GET    /api/auth/me
+  POST   /api/auth/login
+  POST   /api/auth/register
+  POST   /api/auth/logout
+  PATCH  /api/profile
+  POST   /api/profile/photo
+  DELETE /api/profile/photo
+  POST   /api/profile/password
+  GET    /api/account/privacy
+  PATCH  /api/account/privacy
+  POST   /api/account/privacy/cleanup
+  GET    /api/account/export
+  GET    /api/account/session-history.csv
+  DELETE /api/account
+
+Dashboard/community:
+  GET  /api/dashboard
+  POST /api/dashboard/onboarding
+  GET  /api/community
+  GET  /api/community/users/<user_id>
+  POST/DELETE follow endpoints under /api/community/users/<user_id>/follow
+
+Inbox and notifications:
+  GET/POST conversation and message routes under /api/inbox
+  POST /api/inbox/reports
+  POST/DELETE block routes
+  GET/PATCH notification and follow-request routes
+
+Calendar and credits:
+  GET/PATCH/POST/DELETE routes under /api/calendar
+  GET /api/calendar/events/<event_id>/ics
+  GET /api/credits
+  POST /api/credits/transfer
+  POST /api/credits/disputes
+
+Live video:
+  POST      /api/video/rooms
+  GET/PATCH /api/video/rooms/<room_id>
+  POST      /api/video/rooms/<room_id>/join
+  PATCH     /api/video/rooms/<room_id>/participants/<user_id>
+  GET/POST  /api/video/rooms/<room_id>/signals
+  POST      /api/video/rooms/<room_id>/attendance
+
+Operations/content:
+  GET/POST workshop routes
+  POST /api/contact
+  POST /api/complaints
+  POST /api/feedback
+  GET/POST/PATCH idea routes
+
+Administration:
+  Protected routes under /api/admin for overview, users, operations, content,
+  message reports, message moderation, credit disputes, ideas, guardian consent,
+  and student-safety review.
+
+State-changing requests require a valid authenticated session and CSRF token.
+
+
+13. TESTING
+-----------
+
+From the project virtual environment:
+  python -m unittest -v test_operations.py test_dashboard_matching.py test_video_privacy_safety.py
+
+Python syntax check:
+  python -m py_compile swaplabs_server.py wsgi.py
+
+JavaScript syntax checks when Node.js is installed:
+  node --check swaplabs.js
+  node --check swaplabs-auth.js
+  node --check swaplabs-dashboard.js
+  node --check swaplabs-operations.js
+  node --check swaplabs-content.js
+  node --check swaplabs-more-content.js
+  node --check swaplabs-video.js
+
+Manual release checklist:
+  - Register a new account.
+  - Log in with username and email.
+  - Confirm dashboard data and live metrics.
+  - Test strict matching, broad matching, and the no-result state.
+  - Change profile values/photo and confirm they appear elsewhere.
+  - Test public/private follow requests.
+  - Send, read, mute, block, report, and moderate a conversation.
+  - Schedule a two-member event and inspect both calendars.
+  - Open the room in two browser profiles, test the waiting room, camera, audio,
+    screen sharing, connection state, and two-sided attendance confirmation.
+  - Export an ICS file.
+  - Transfer credits and inspect both ledgers.
+  - Register/cancel a workshop.
+  - Submit feedback and an innovation idea.
+  - Test admin suspension and reactivation.
+  - Register a student test account, verify private defaults, accepted-connection
+    messaging, guardian review, and specialist idea moderation.
+  - Export account JSON and session CSV, run retention cleanup, and delete a
+    disposable test account.
+  - Confirm SwapBot contains no member-message previews or copied message text.
+  - Check light/dark mode at desktop, tablet, and phone widths.
+  - Verify pale components use black text in dark mode.
+
+
+14. PRODUCTION DEPLOYMENT — GENERAL REQUIREMENTS
+------------------------------------------------
+
+Do not deploy this project to GitHub Pages by itself. GitHub Pages serves static
+files and cannot run the Flask backend. Use a Python host, VPS, container host, or
+platform service with a persistent writable disk.
+
+Required production environment variables:
+  SWAPLABS_SECRET_KEY       Long random secret, at least 32 bytes
+  SWAPLABS_SECURE_COOKIES   1 when the public site uses HTTPS
+  SWAPLABS_PORT             Port supplied by the host, or 8765
+
+Optional local/development variable:
+  SWAPLABS_HOST             Defaults to 127.0.0.1; use 0.0.0.0 when required
+
+Generate a strong secret:
+  python -c "import secrets; print(secrets.token_hex(32))"
+
+Production command:
+  gunicorn --workers 1 --threads 8 --bind 0.0.0.0:${PORT:-8765} wsgi:app
+
+Use exactly one Gunicorn worker with the current JSON store. Multiple processes
+could race while writing one JSON file. Threads are supported by the application's
+locking and atomic-write design. After migrating to a transactional database,
+multiple workers may be used.
+
+The hosting volume must persist and permit writes to data/. Ephemeral filesystems
+will lose new accounts, messages, uploads, calendar events, credits, and settings
+when the service restarts or redeploys.
+
+
+15. DEPLOYMENT ON AN UBUNTU VPS WITH NGINX
+------------------------------------------
+
+Assumptions:
+  - Domain: swaplabs.example.com
+  - App directory: /srv/swaplabs
+  - Service user: swaplabs
+
+Install software:
+  sudo apt update
+  sudo apt install -y python3 python3-venv nginx
+
+Create service account and copy project:
+  sudo useradd --system --create-home --shell /usr/sbin/nologin swaplabs
+  sudo mkdir -p /srv/swaplabs
+  sudo chown -R swaplabs:swaplabs /srv/swaplabs
+
+Copy the project files into /srv/swaplabs, then:
+  cd /srv/swaplabs
+  sudo -u swaplabs python3 -m venv .venv
+  sudo -u swaplabs .venv/bin/pip install -r requirements.txt
+  sudo -u swaplabs chmod -R u+rwX data
+
+Create /etc/systemd/system/swaplabs.service:
+
+[Unit]
+Description=SwapLabs skill exchange platform
+After=network.target
+
+[Service]
+User=swaplabs
+Group=swaplabs
+WorkingDirectory=/srv/swaplabs
+Environment=SWAPLABS_SECRET_KEY=REPLACE_WITH_A_LONG_RANDOM_SECRET
+Environment=SWAPLABS_SECURE_COOKIES=1
+Environment=SWAPLABS_PORT=8765
+ExecStart=/srv/swaplabs/.venv/bin/gunicorn --workers 1 --threads 8 --bind 127.0.0.1:8765 wsgi:app
+Restart=on-failure
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+Enable it:
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now swaplabs
+  sudo systemctl status swaplabs
+
+Create /etc/nginx/sites-available/swaplabs:
+
+server {
+    listen 80;
+    server_name swaplabs.example.com;
+
+    client_max_body_size 5m;
+
+    location / {
+        proxy_pass http://127.0.0.1:8765;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 120s;
+    }
+}
+
+Enable Nginx:
+  sudo ln -s /etc/nginx/sites-available/swaplabs /etc/nginx/sites-enabled/swaplabs
+  sudo nginx -t
+  sudo systemctl reload nginx
+
+Add HTTPS with your preferred certificate provider. With Certbot:
+  sudo apt install -y certbot python3-certbot-nginx
+  sudo certbot --nginx -d swaplabs.example.com
+
+Confirm SWAPLABS_SECURE_COOKIES=1 only after HTTPS is working, then restart:
+  sudo systemctl restart swaplabs
+
+Logs:
+  sudo journalctl -u swaplabs -f
+  sudo tail -f /var/log/nginx/error.log
+
+
+16. DEPLOYMENT ON RENDER, RAILWAY, OR A SIMILAR PYTHON HOST
+-----------------------------------------------------------
+
+  1. Put the repository in a private Git repository.
+  2. Create a Python web service.
+  3. Build command: pip install -r requirements.txt
+  4. Start command:
+       gunicorn --workers 1 --threads 8 --bind 0.0.0.0:$PORT wsgi:app
+  5. Set SWAPLABS_SECRET_KEY to a generated random value.
+  6. Set SWAPLABS_SECURE_COOKIES=1.
+  7. Attach a persistent disk and mount/configure it so this project's data/
+     directory remains persistent.
+  8. Deploy, open /login.html, and immediately change demo credentials.
+  9. Test upload persistence by restarting/redeploying after creating a test user.
+
+If the host cannot provide a persistent filesystem at the project's data/ path,
+do not use it with the JSON store. Migrate to a managed database and object storage.
+
+
+17. SECURITY BEFORE PUBLIC LAUNCH
+---------------------------------
+
+Required:
+  - Replace every demonstration password.
+  - Use a unique SWAPLABS_SECRET_KEY and never commit it.
+  - Use HTTPS and SWAPLABS_SECURE_COOKIES=1.
+  - Restrict data/ file permissions to the service account.
+  - Back up data and test restoration.
+  - Keep Flask, Gunicorn, Python, and the operating system updated.
+  - Review Privacy and Terms content for the actual organization and jurisdiction.
+  - Review child-safety, guardian-consent, age-assurance, and mandatory-reporting
+    obligations with qualified specialists for every launch jurisdiction.
+  - Add an email-based password reset and email verification service before a real
+    public launch.
+  - Add rate limiting, login throttling, monitoring, centralized logs, malware
+    scanning for attachments, and a formal content-moderation policy.
+  - Move to PostgreSQL and object storage before scaling beyond one app process.
+  - Never expose data/users.json or data/.session_secret through a web route.
+
+Recommended:
+  - Put the service behind Nginx or a managed HTTPS proxy.
+  - Add Content-Security-Policy and other hardened response headers.
+  - Add automated backups and retention rules.
+  - Use separate development, staging, and production data.
+  - Conduct accessibility, privacy, load, and security testing.
+
+
+18. COMMON TROUBLESHOOTING
+--------------------------
+
+Page opens but features do not work:
+  You probably opened an HTML file with file://. Start Flask and use the local URL.
+
+Port already in use:
+  SWAPLABS_PORT=9000 python swaplabs_server.py
+
+Cannot log in after a public deployment:
+  Verify HTTPS is active when SWAPLABS_SECURE_COOKIES=1. Check the browser cookie,
+  proxy headers, service logs, and that the same secret is retained across restarts.
+
+Accounts disappear after redeployment:
+  The data directory is on an ephemeral filesystem. Attach a persistent disk or
+  migrate to a database.
+
+Uploads fail:
+  Confirm data/uploads and data/message_uploads are writable. The application has
+  a 5 MB request limit. Also check the reverse proxy upload limit.
+
+Dark-mode text is invisible on a pale component:
+  Add that component's class to the pale-surface selector near the end of
+  styles/pages.css. Do not change all dark-mode text variables to black.
+
+CSS changes do not appear:
+  Hard-refresh the browser, disable cache in developer tools, and verify the page
+  loads swaplabs.css, which imports the five active style modules.
+
+JSON is damaged:
+  Stop the app, preserve the damaged file for investigation, restore data/ from a
+  backup, check ownership, and restart. Do not edit the live file while requests
+  are being processed.
+
+
+19. DEVELOPMENT RULES
+---------------------
+
+  - Put global colors and text contexts in styles/tokens.css.
+  - Put reusable components in styles/components.css.
+  - Put layout and breakpoints in styles/layout.css.
+  - Put page-specific and theme exceptions in styles/pages.css.
+  - Do not reconnect styles/legacy files.
+  - Use Boxicons rather than emoji in the website interface.
+  - Keep user-facing statistics connected to /api/platform/metrics.
+  - Require authentication and CSRF for state-changing operations.
+  - Preserve role checks on all admin routes.
+  - Test both participants whenever changing sessions, messages, follows, or credit
+    transfers because these operations affect more than one account.
+  - Back up data before changing persistence or migration logic.
+
+
+20. CURRENT LIMITATIONS AND RECOMMENDED NEXT STEPS
+--------------------------------------------------
+
+  - JSON persistence supports one server process; PostgreSQL is the next scaling
+    step.
+  - Uploaded files are local; object storage is needed for multi-server hosting.
+  - Calendar support exports ICS but does not yet use direct Google/Outlook OAuth.
+  - SwapBot is website-specific and local, not a general cloud AI service.
+  - Real-time chat uses request-based updates rather than WebSockets.
+  - Video uses direct WebRTC and REST signalling. Production use across restrictive
+    networks needs STUN/TURN infrastructure; large rooms need an SFU/video service.
+  - Production email delivery, password recovery, MFA, payments,
+    anti-spam/rate limiting, and automated media scanning require external services.
+
+Recommended implementation order:
+  1. PostgreSQL and migrations.
+  2. Object storage for photos and attachments.
+  3. Email verification, password reset, and MFA.
+  4. Rate limiting, monitoring, and security headers.
+  5. WebSocket real-time messaging.
+  6. Calendar OAuth integrations.
+  7. Production TURN plus an SFU/video provider for reliable large group rooms.
+  8. Production AI provider only after privacy, safety, and cost controls are set.
+
+
+END OF GUIDE
+------------
+
+Local start page: http://127.0.0.1:8765/swaplabs.html
+Member landing page: http://127.0.0.1:8765/dashboard.html
+Administration page: http://127.0.0.1:8765/admin.html

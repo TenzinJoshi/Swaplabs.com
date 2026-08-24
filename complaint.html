@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Make a Complaint — SwapLabs</title>
+    <meta name="description" content="Submit a formal SwapLabs service complaint, explain the resolution you need, and receive a trackable complaint reference.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="platform-page" data-platform-page="complaint">
+
+      <section class="platform-hero">
+        <div class="container platform-hero-grid">
+          <div>
+            <span class="platform-kicker"><i class="bx bx-message-square-error"></i> Formal complaint route</span>
+            <h1>Tell us what failed and what a <span class="platform-accent">fair resolution looks like.</span></h1>
+            <p class="platform-hero-copy">Use this page when a SwapLabs service, decision, workshop, account process, accessibility experience, or previous support response did not meet a reasonable standard. The complaint becomes a saved administrative record with a unique reference.</p>
+            <div class="platform-hero-actions">
+              <a class="btn btn-primary" href="#complaintFormSection"><i class="bx bx-edit-alt"></i> Start a complaint</a>
+              <a class="btn" href="report.html"><i class="bx bx-flag"></i> Report a safety concern</a>
+            </div>
+            <div class="platform-hero-note"><i class="bx bx-info-circle"></i><span>If someone is in immediate danger, contact local emergency services. This complaint route is not an emergency response channel.</span></div>
+          </div>
+          <aside class="platform-hero-card">
+            <div class="hero-card-top"><span>A strong complaint includes</span><i class="bx bx-list-ul"></i></div>
+            <h2 class="hero-card-title">Specific facts, a clear effect, and a realistic request.</h2>
+            <p class="hero-card-copy">You do not need legal language. A calm timeline and clear desired outcome are more useful.</p>
+            <ul class="hero-card-list">
+              <li><i class="bx bx-calendar"></i><span>What happened, when, and which feature or service was involved</span></li>
+              <li><i class="bx bx-link"></i><span>Relevant account, session, workshop, ticket, or transaction reference</span></li>
+              <li><i class="bx bx-error-circle"></i><span>How the problem affected your learning, access, time, credits, or trust</span></li>
+              <li><i class="bx bx-check-circle"></i><span>The correction, explanation, review, or other outcome that would help</span></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <div class="platform-stat-strip">
+        <div class="container platform-stat-shell">
+          <div class="platform-stat"><i class="bx bx-hash"></i><strong>One reference</strong><span>for the complete complaint record</span></div>
+          <div class="platform-stat"><i class="bx bx-user-check"></i><strong>Named owner</strong><span>inside the administration workflow</span></div>
+          <div class="platform-stat"><i class="bx bx-time-five"></i><strong>2 days</strong><span>target acknowledgement window</span></div>
+          <div class="platform-stat"><i class="bx bx-revision"></i><strong>Review path</strong><span>when the first outcome is disputed</span></div>
+        </div>
+      </div>
+
+      <section class="platform-section" id="complaintFormSection">
+        <div class="container platform-form-layout">
+          <form class="platform-form platform-form-shell" id="complaintForm">
+            <div class="platform-form-head">
+              <div>
+                <h2>Complaint details</h2>
+                <p>Share enough detail to investigate without including unrelated sensitive information.</p>
+              </div><i class="bx bx-file"></i>
+            </div>
+            <div class="platform-form-grid">
+              <div class="field"><label for="complaintName">Your name</label><input id="complaintName" name="name" autocomplete="name" maxlength="100" required placeholder="Full or preferred name"></div>
+              <div class="field"><label for="complaintEmail">Email address</label><input id="complaintEmail" name="email" autocomplete="email" type="email" maxlength="180" required placeholder="you@example.com"></div>
+              <div class="field"><label for="complaintCategory">Complaint category</label><select id="complaintCategory" name="category" required>
+                  <option value="">Choose a category</option>
+                  <option>Account access or profile</option>
+                  <option>Time credits or billing</option>
+                  <option>Skill match or member experience</option>
+                  <option>Workshop or live session delivery</option>
+                  <option>Course, assessment, or certification</option>
+                  <option>Moderation decision</option>
+                  <option>Accessibility barrier</option>
+                  <option>Privacy or data handling</option>
+                  <option>Customer support experience</option>
+                  <option>Partnership or organization service</option>
+                  <option>Other service concern</option>
+                </select></div>
+              <div class="field"><label for="complaintPriority">Priority</label><select id="complaintPriority" name="priority" required>
+                  <option value="standard">Standard — no immediate deadline</option>
+                  <option value="time-sensitive">Time-sensitive — decision or event approaching</option>
+                  <option value="urgent">Urgent — serious ongoing impact</option>
+                </select></div>
+              <div class="field full"><label for="complaintSubject">Complaint summary <small>One sentence</small></label><input id="complaintSubject" name="subject" maxlength="180" required placeholder="What went wrong?"></div>
+              <div class="field full"><label for="complaintReference">Related reference <small>Optional</small></label><input id="complaintReference" name="reference" maxlength="160" placeholder="Session, workshop, ticket, account, or transaction reference"></div>
+              <div class="field full"><label for="complaintDetails">What happened? <small>Include dates, steps, and effect</small></label><textarea id="complaintDetails" name="details" rows="9" maxlength="6000" required placeholder="Explain the expected experience, what actually happened, any steps already taken, and the practical effect."></textarea></div>
+              <div class="field full"><label for="complaintResolution">What resolution are you seeking?</label><textarea id="complaintResolution" name="resolution" rows="5" maxlength="1600" required placeholder="For example: correct a record, restore credits, explain a decision, repeat a workshop place, remove a barrier, or review the first response."></textarea></div>
+              <label class="platform-check field full"><input type="checkbox" required><span><strong>I confirm this account is accurate to the best of my knowledge.</strong><span>I understand the team may contact me for the minimum additional context needed to review it.</span></span></label>
+            </div>
+            <div class="platform-form-actions">
+              <p>Authorized administrators can view the complete complaint, change its review status, and add private administrative notes.</p><button class="btn btn-primary" type="submit"><i class="bx bx-check-shield"></i> Submit formal complaint</button>
+            </div>
+            <div class="platform-form-status" data-platform-status role="status" aria-live="polite"></div>
+          </form>
+          <aside class="platform-side-stack">
+            <article class="platform-side-card">
+              <h3><i class="bx bx-shield-quarter"></i> Use Report for safety</h3>
+              <p>Harassment, discrimination, fraud, impersonation, threats, unsafe behavior, and inappropriate content should use the confidential <a href="report.html" style="color:var(--indigo);font-weight:800">Report page</a>.</p>
+            </article>
+            <article class="platform-side-card">
+              <h3><i class="bx bx-lock-alt"></i> Protect sensitive information</h3>
+              <p>Do not include passwords, complete payment details, identity documents, health records, or information about another person that is not needed for the review.</p>
+            </article>
+            <article class="platform-side-card">
+              <h3><i class="bx bx-paperclip"></i> Keep supporting evidence</h3>
+              <p>Save relevant confirmations, dates, screenshots, and references. The team may ask for a specific item later through a secure route.</p>
+            </article>
+            <article class="platform-side-card">
+              <h3><i class="bx bx-conversation"></i> Prefer a question first?</h3>
+              <p>If you mainly need guidance or clarification, <a href="contact.html" style="color:var(--indigo);font-weight:800">Contact Us</a> may resolve the issue faster without a formal complaint review.</p>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="platform-section tint">
+        <div class="container">
+          <div class="platform-heading center"><span class="platform-kicker"><i class="bx bx-git-compare"></i> Review process</span>
+            <h2>A complaint moves through visible decision stages.</h2>
+            <p>Administrators keep the submission, status, and internal review notes together so the record does not depend on memory.</p>
+          </div>
+          <div class="platform-grid-4">
+            <article class="platform-card"><span class="platform-mini-label">Received</span><span class="platform-card-icon"><i class="bx bx-inbox"></i></span>
+              <h3>Reference issued</h3>
+              <p>The complaint is saved with your account context where available, a timestamp, category, and priority.</p>
+            </article>
+            <article class="platform-card"><span class="platform-mini-label">Triage</span><span class="platform-card-icon"><i class="bx bx-sort-alt-2"></i></span>
+              <h3>Scope and urgency checked</h3>
+              <p>The team confirms whether the complaint route is correct and whether time-sensitive action is required.</p>
+            </article>
+            <article class="platform-card"><span class="platform-mini-label">Review</span><span class="platform-card-icon"><i class="bx bx-search-alt"></i></span>
+              <h3>Relevant records considered</h3>
+              <p>Account, session, workshop, support, or policy context is checked with the minimum necessary access.</p>
+            </article>
+            <article class="platform-card"><span class="platform-mini-label">Outcome</span><span class="platform-card-icon"><i class="bx bx-check-circle"></i></span>
+              <h3>Decision and next step</h3>
+              <p>The response explains the action, reasoning, correction where appropriate, and any available review route.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform-section">
+        <div class="container platform-grid-2">
+          <div class="platform-heading"><span class="platform-kicker"><i class="bx bx-bar-chart-square"></i> Service standards</span>
+            <h2>What you can reasonably expect from the process.</h2>
+            <p>Targets can vary with complexity, but the team should communicate when a review needs more time.</p>
+          </div>
+          <div class="platform-grid-2">
+            <article class="platform-card">
+              <h3>Acknowledgement</h3>
+              <p>A complaint reference is issued immediately after successful submission. Human acknowledgement is targeted within two business days.</p>
+            </article>
+            <article class="platform-card">
+              <h3>Proportionate investigation</h3>
+              <p>The team should review enough evidence to answer the complaint without collecting excessive personal data.</p>
+            </article>
+            <article class="platform-card">
+              <h3>Reasoned response</h3>
+              <p>An outcome should state what was reviewed, what was decided, and what correction or further action follows.</p>
+            </article>
+            <article class="platform-card">
+              <h3>Review option</h3>
+              <p>If you believe relevant evidence or policy was missed, explain the specific point that should be reconsidered.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform-section soft-pink">
+        <div class="container">
+          <div class="platform-heading center"><span class="platform-kicker"><i class="bx bx-help-circle"></i> Complaint questions</span>
+            <h2>Know the route before you submit.</h2>
+          </div>
+          <div class="faq-list" style="margin:auto">
+            <article class="faq-item"><button class="faq-q">Can I complain without signing in?<span>+</span></button>
+              <div class="faq-a">Yes. Name and email are required so the team can acknowledge the complaint. When you are signed in, your account ID is also attached to help investigate account-specific records.</div>
+            </article>
+            <article class="faq-item"><button class="faq-q">Can the administrator edit my complaint?<span>+</span></button>
+              <div class="faq-a">The original submitted details remain visible in the administrative record. Administrators can update status, priority, and private review notes used to manage the case.</div>
+            </article>
+            <article class="faq-item"><button class="faq-q">What if my complaint is about another member?<span>+</span></button>
+              <div class="faq-a">Use Complaint for service or moderation process concerns. Use Report if the member’s behavior involves harassment, fraud, threats, unsafe conduct, or inappropriate content.</div>
+            </article>
+            <article class="faq-item"><button class="faq-q">What if I disagree with the first response?<span>+</span></button>
+              <div class="faq-a">Reply with the complaint reference and identify the evidence, policy, or reasoning you believe was overlooked. A review should focus on that specific point.</div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My profile — SwapLabs</title>
+    <meta name="description" content="Manage your SwapLabs identity, learning profile, privacy, and account security.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="account-main" data-auth-page="profile">
+
+      <section class="account-hero">
+        <div class="container"><span class="eyebrow">Account settings</span>
+          <h1>Make your profile work for you.</h1>
+          <p>Update the details used across SwapLabs, tune how you appear in matching, and keep your account secure.</p>
+        </div>
+      </section>
+
+      <section class="account-section">
+        <div class="container">
+          <div class="server-required" data-server-required><strong>Start the SwapLabs Python server first.</strong> Your saved profile is available through the local application server.</div>
+          <div class="profile-loading" id="profileLoading"><i class="bx bx-loader-alt bx-spin"></i>Loading your profile…</div>
+          <div class="profile-locked auth-card" id="profileLocked" hidden><i class="bx bx-lock-alt"></i>
+            <h2>Log in to manage your profile</h2>
+            <p class="muted">Your personal details and preferences are available only after member or administrator sign-in.</p><a class="btn btn-primary" href="login.html">Go to login</a>
+          </div>
+          <div class="profile-layout" id="profilePanel" hidden>
+            <aside class="profile-sidebar">
+
+              <section class="profile-card profile-summary">
+                <div class="profile-avatar-xl" data-profile-avatar></div>
+                <h2 data-profile-name></h2>
+                <p data-profile-handle></p>
+                <div class="profile-badges"><span class="account-pill" data-profile-role></span><span class="status-pill active">Active</span></div>
+                <div class="profile-quick-stats">
+                  <div><strong data-profile-credits>0</strong><span>time credits</span></div>
+                  <div><strong data-profile-skills>0</strong><span>listed skills</span></div>
+                </div>
+              </section>
+              <nav class="profile-card profile-nav"><a href="#identity"><i class="bx bx-user"></i> Identity</a><a href="#location"><i class="bx bx-map"></i> Personal details</a><a href="#learning"><i class="bx bx-book-reader"></i> Learning profile</a><a href="#student-safety"><i class="bx bx-shield-quarter"></i> Student safety</a><a href="#preferences"><i class="bx bx-cog"></i> Website settings</a><a href="#account-data"><i class="bx bx-data"></i> Privacy and data</a><a href="#security"><i class="bx bx-lock-alt"></i> Security</a></nav>
+            </aside>
+            <div class="profile-content">
+              <form id="profileForm">
+
+                <section class="profile-card" id="identity">
+                  <h2>Identity and public introduction</h2>
+                  <p class="muted">These details shape your profile card throughout the platform.</p>
+                  <div class="profile-photo-manager">
+                    <div class="profile-photo-preview" id="profilePhotoPreview"><i class="bx bx-user"></i></div>
+                    <div><strong>Your profile picture</strong>
+                      <p>Used everywhere your account appears. JPG, PNG, or WebP up to 4 MB.</p>
+                      <div class="photo-actions"><label class="btn btn-sm" for="profilePhotoInput"><i class="bx bx-upload"></i> Choose photo</label><input class="visually-hidden" id="profilePhotoInput" type="file" accept="image/jpeg,image/png,image/webp"><button class="btn btn-sm" id="profilePhotoUpload" type="button"><i class="bx bx-save"></i> Upload</button><button class="btn btn-sm btn-danger" id="profilePhotoRemove" type="button"><i class="bx bx-trash"></i> Remove</button></div>
+                      <div class="form-status" id="profilePhotoStatus"></div>
+                    </div>
+                  </div>
+                  <div class="form-grid">
+                    <div class="field"><label>Username</label><input name="username" readonly></div>
+                    <div class="field"><label>Email address</label><input name="email" readonly></div>
+                    <div class="field"><label>First name</label><input name="first_name" required></div>
+                    <div class="field"><label>Last name</label><input name="last_name" required></div>
+                    <div class="field"><label>Display name</label><input name="display_name" required></div>
+                    <div class="field"><label>Pronouns</label><input name="pronouns" data-option-list="pronouns" placeholder="Choose or type your own"></div>
+                    <div class="field"><label>Occupation</label><input name="occupation" data-option-list="occupations" placeholder="Choose or type an occupation"></div>
+                    <div class="field"><label>Professional role or seniority</label><input name="professional_role" data-option-list="roles" placeholder="Choose or type a role"></div>
+                    <div class="field"><label>Organization</label><input name="organization"></div>
+                    <div class="field"><label>Website or portfolio</label><input name="website" type="url" placeholder="https://"></div>
+                    <div class="field full"><label>Profile headline</label><input name="headline" maxlength="140"></div>
+                    <div class="field full"><label>About you</label><textarea name="bio" maxlength="700"></textarea></div>
+                    <div class="field"><label>Profile accent</label><select name="profile_color">
+                        <option value="indigo">Indigo</option>
+                        <option value="blue">Blue</option>
+                        <option value="pink">Pink</option>
+                        <option value="purple">Purple</option>
+                      </select></div>
+                  </div>
+                </section>
+
+                <section class="profile-card" id="location">
+                  <h2>Personal and location details</h2>
+                  <p class="muted">Your exact account data stays private from other members.</p>
+                  <div class="form-grid three">
+                    <div class="field"><label>Date of birth</label><input name="date_of_birth" type="date" required></div>
+                    <div class="field"><label>Age</label><select name="age" data-age-select required>
+                        <option value="">Select age</option>
+                      </select></div>
+                    <div class="field"><label>Country</label><input name="country" data-option-list="countries" required placeholder="Choose or type a country"></div>
+                    <div class="field"><label>City</label><input name="city"></div>
+                    <div class="field"><label>Timezone</label><input name="timezone" data-option-list="timezones" placeholder="Choose or type a timezone"></div>
+                    <div class="field"><label>Primary language</label><input name="primary_language" data-option-list="languages" required></div>
+                    <div class="field full"><label>Additional languages</label><input name="additional_languages" data-multi-options="languages" placeholder="Search and add languages, separated with commas"></div>
+                  </div>
+                </section>
+
+                <section class="profile-card" id="learning">
+                  <h2>Learning and teaching profile</h2>
+                  <p class="muted">Changes here update matching context and the registered member directory.</p>
+                  <div class="form-grid">
+                    <div class="field"><label>Skills you can teach</label><input name="skills_to_teach" placeholder="Separate with commas"></div>
+                    <div class="field"><label>Skills you want to learn</label><input name="skills_to_learn" placeholder="Separate with commas"></div>
+                    <div class="field"><label>Experience or proficiency level</label><select name="experience_level">
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                        <option>Expert</option>
+                      </select></div>
+                    <div class="field"><label>Preferred format</label><select name="preferred_format">
+                        <option>Remote or local</option>
+                        <option>Remote only</option>
+                        <option>Local only</option>
+                        <option>Group sessions</option>
+                        <option>One-to-one sessions</option>
+                        <option>Flexible</option>
+                      </select></div>
+                    <div class="field"><label>Teaching style</label><select name="teaching_style">
+                        <option>Project-based</option>
+                        <option>Structured lessons</option>
+                        <option>Conversational</option>
+                        <option>Demonstration first</option>
+                        <option>Practice and feedback</option>
+                        <option>Flexible</option>
+                      </select></div>
+                    <div class="field"><label>Availability summary</label><input name="availability" placeholder="Set precise weekly times in Calendar"></div>
+                    <div class="field"><label>Interests</label><input name="interests" placeholder="Separate with commas"></div>
+                    <div class="field full"><label>Main learning goal</label><textarea name="learning_goal"></textarea></div>
+                  </div>
+                  <div class="account-security-note"><i class="bx bx-calendar-check"></i>
+                    <div><strong>Improve schedule matching</strong>
+                      <p>Use the <a href="calendar.html">Calendar availability panel</a> to set exact weekly times and timezone-aware overlap.</p>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="profile-card student-safety-section" id="student-safety" hidden>
+                  <div class="settings-heading">
+                    <div><span class="eyebrow"><i class="bx bx-shield-quarter"></i> Age-aware protection</span>
+                      <h2>Student safety and guardian consent</h2>
+                      <p class="muted">Student profiles stay private and Innovation Lab ideas wait for specialist moderation before publication.</p>
+                    </div><span class="guardian-status" id="guardianConsentStatus">Pending review</span>
+                  </div>
+                  <div class="student-safety-notice">
+                    <i class="bx bx-lock-alt"></i>
+                    <div><strong>Protected student defaults are active</strong>
+                      <p>Only accepted connections can message this account. Exact age and sensitive location details are hidden from member profiles.</p>
+                    </div>
+                  </div>
+                  <div class="form-grid three">
+                    <div class="field"><label>Parent or guardian name</label><input name="guardian_name" maxlength="120"></div>
+                    <div class="field"><label>Parent or guardian email</label><input name="guardian_email" type="email" maxlength="120"></div>
+                    <div class="field"><label>Relationship</label><select name="guardian_relationship">
+                        <option value="parent">Parent</option>
+                        <option value="legal guardian">Legal guardian</option>
+                        <option value="grandparent">Grandparent</option>
+                        <option value="adult sibling">Adult sibling</option>
+                        <option value="foster carer">Foster carer</option>
+                        <option value="other guardian">Other guardian</option>
+                      </select></div>
+                  </div>
+                  <label class="terms-row guardian-consent-row"><input name="guardian_consent_declared" type="checkbox"><span>The named parent or guardian confirms consent for this student account. Changing guardian contact details sends the record back to pending review.</span></label>
+                </section>
+
+                <section class="profile-card settings-card" id="preferences">
+                  <div class="settings-heading">
+                    <div><span class="eyebrow"><i class="bx bx-cog"></i> Account-wide controls</span>
+                      <h2>Website settings</h2>
+                      <p class="muted">These choices follow your account and are applied across SwapLabs on every signed-in device.</p>
+                    </div><span class="settings-saved-indicator"><i class="bx bx-cloud"></i> Synced to account</span>
+                  </div>
+                  <div class="settings-group">
+                    <div class="settings-group-heading"><i class="bx bx-palette"></i>
+                      <div>
+                        <h3>Appearance</h3>
+                        <p>Choose the color mode and reading layout that feels best.</p>
+                      </div>
+                    </div>
+                    <div class="theme-choice-grid"><label class="theme-choice light-preview"><input name="theme" type="radio" value="light"><span class="theme-preview"><i class="bx bx-sun"></i><span></span><span></span></span><strong>Light mode</strong><small>Bright surfaces and dark text</small></label><label class="theme-choice dark-preview"><input name="theme" type="radio" value="dark"><span class="theme-preview"><i class="bx bx-moon"></i><span></span><span></span></span><strong>Dark mode</strong><small>Dim surfaces and soft contrast</small></label></div>
+                    <div class="form-grid three settings-select-grid">
+                      <div class="field"><label>Text size</label><select name="font_scale">
+                          <option value="small">Small</option>
+                          <option value="default">Default</option>
+                          <option value="large">Large</option>
+                          <option value="extra-large">Extra large</option>
+                        </select></div>
+                      <div class="field"><label>Content spacing</label><select name="content_density">
+                          <option value="comfortable">Comfortable</option>
+                          <option value="compact">Compact</option>
+                        </select></div>
+                      <div class="field"><label>Navigation style</label><select name="navigation_style">
+                          <option value="expanded">Expanded labels</option>
+                          <option value="compact">Compact icons</option>
+                        </select></div>
+                      <div class="field"><label>Page after login</label><select name="default_landing">
+                          <option value="dashboard">My dashboard</option>
+                          <option value="home">Homepage</option>
+                          <option value="profile">My profile</option>
+                          <option value="inbox">Inbox</option>
+                          <option value="calendar">Calendar</option>
+                          <option value="community">Community</option>
+                        </select></div>
+                    </div>
+                  </div>
+                  <div class="settings-group">
+                    <div class="settings-group-heading"><i class="bx bx-accessibility"></i>
+                      <div>
+                        <h3>Accessibility and focus</h3>
+                        <p>Adjust motion, contrast, links, and page density throughout the platform.</p>
+                      </div>
+                    </div>
+                    <div class="check-grid settings-check-grid"><label class="check-row"><input name="high_contrast" type="checkbox"><span><strong>Higher contrast</strong><span>Strengthen borders and foreground colors.</span></span></label><label class="check-row"><input name="reduced_motion" type="checkbox"><span><strong>Reduce motion</strong><span>Stop typewriter, belt, and decorative animations.</span></span></label><label class="check-row"><input name="link_underlines" type="checkbox"><span><strong>Underline content links</strong><span>Make links easier to distinguish from body text.</span></span></label><label class="check-row"><input name="focus_mode" type="checkbox"><span><strong>Focus mode</strong><span>Hide promotional directories and reduce page decoration.</span></span></label></div>
+                  </div>
+                  <div class="settings-group">
+                    <div class="settings-group-heading"><i class="bx bx-bot"></i>
+                      <div>
+                        <h3>Assistant and homepage</h3>
+                        <p>Choose which automated and moving experiences appear while you browse.</p>
+                      </div>
+                    </div>
+                    <div class="check-grid settings-check-grid"><label class="check-row"><input name="show_ai_assistant" type="checkbox"><span><strong>Show the AI assistant</strong><span>Display the SwapBot launcher on regular pages.</span></span></label><label class="check-row"><input name="auto_play_testimonials" type="checkbox"><span><strong>Rotate testimonials</strong><span>Automatically move the homepage testimonial belt.</span></span></label></div>
+                  </div>
+                  <div class="settings-group">
+                    <div class="settings-group-heading"><i class="bx bx-shield-quarter"></i>
+                      <div>
+                        <h3>Privacy and communication</h3>
+                        <p>Control profile access, discovery, and account updates.</p>
+                      </div>
+                    </div>
+                    <div class="visibility-choice-grid"><label class="visibility-choice"><input name="profile_visibility" type="radio" value="public"><i class="bx bx-world"></i><span><strong>Public profile</strong><small>Everyone can see your community profile. New followers are accepted immediately.</small></span></label><label class="visibility-choice"><input name="profile_visibility" type="radio" value="private"><i class="bx bx-lock-alt"></i><span><strong>Private profile</strong><small>Only basics appear until you approve each follow request from your Inbox.</small></span></label></div>
+                    <div class="check-grid settings-check-grid"><label class="check-row"><input name="match_visibility" type="checkbox"><span><strong>Appear in skill matching</strong><span>Allow active members to discover your profile.</span></span></label><label class="check-row"><input name="show_location" type="checkbox"><span><strong>Show general location</strong><span>Display city and country in the directory.</span></span></label><label class="check-row"><input name="email_notifications" type="checkbox"><span><strong>Account notifications</strong><span>Receive important account and safety updates.</span></span></label><label class="check-row"><input name="weekly_digest" type="checkbox"><span><strong>Weekly digest</strong><span>Receive matching and learning highlights.</span></span></label></div>
+                  </div>
+                  <div class="settings-save-bar">
+                    <div><i class="bx bx-info-circle"></i><span>Appearance changes preview immediately. Save to use them on every device.</span></div><button class="btn btn-primary" type="submit"><i class="bx bx-save"></i> Save profile and settings</button>
+                  </div>
+                  <div class="form-status" data-status></div>
+                </section>
+              </form>
+
+              <section class="profile-card account-data-card" id="account-data">
+                <div class="settings-heading">
+                  <div><span class="eyebrow"><i class="bx bx-data"></i> Privacy lifecycle</span>
+                    <h2>Your data, retention, and downloads</h2>
+                    <p class="muted">Choose how long eligible activity is kept, download portable records, or permanently close your account.</p>
+                  </div><span class="settings-saved-indicator"><i class="bx bx-lock-alt"></i> Account protected</span>
+                </div>
+                <form id="privacyDataForm">
+                  <div class="privacy-count-grid" id="privacyDataCounts">
+                    <div><strong>—</strong><span>Messages</span></div>
+                    <div><strong>—</strong><span>Sessions</span></div>
+                    <div><strong>—</strong><span>Ledger records</span></div>
+                    <div><strong>—</strong><span>Ideas</span></div>
+                  </div>
+                  <div class="form-grid three privacy-control-grid">
+                    <div class="field"><label>General activity retention</label><select name="data_retention">
+                        <option value="standard">Standard — 365 days</option>
+                        <option value="reduced">Reduced — 180 days</option>
+                        <option value="minimal">Minimal — 90 days</option>
+                      </select><small>Applies to eligible read updates and low-risk activity.</small></div>
+                    <div class="field"><label>Message content retention</label><select name="message_retention">
+                        <option value="30_days">30 days</option>
+                        <option value="90_days">90 days</option>
+                        <option value="365_days">365 days</option>
+                        <option value="forever">Keep until account deletion</option>
+                      </select><small>Older sent content is removed while safety metadata remains.</small></div>
+                    <div class="field"><label>Video session history</label><select name="session_history_retention">
+                        <option value="90_days">90 days</option>
+                        <option value="365_days">365 days</option>
+                        <option value="730_days">730 days</option>
+                        <option value="forever">Keep until account deletion</option>
+                      </select><small>Controls eligible attendance and connection-quality history.</small></div>
+                  </div>
+                  <label class="check-row privacy-analytics-choice"><input name="allow_research_analytics" type="checkbox"><span><strong>Optional product research analytics</strong><span>Allow de-identified usage totals to help improve SwapLabs. This is off by default.</span></span></label>
+                  <div class="privacy-retention-note" id="privacyRetentionNote"><i class="bx bx-info-circle"></i><span>Loading your current retention schedule.</span></div>
+                  <div class="data-download-grid">
+                    <a class="data-download-card" href="/api/account/export"><i class="bx bx-package"></i><span><strong>Export all account data</strong><small>Download a readable JSON archive of your profile and activity.</small></span><i class="bx bx-download"></i></a>
+                    <a class="data-download-card" href="/api/account/session-history.csv"><i class="bx bx-calendar-check"></i><span><strong>Download session history</strong><small>Save calendar, attendance, duration, and confirmation records as CSV.</small></span><i class="bx bx-download"></i></a>
+                  </div>
+                  <div class="form-actions privacy-actions"><button class="btn" id="privacyCleanupButton" type="button"><i class="bx bx-eraser"></i> Apply retention cleanup now</button><button class="btn btn-primary" type="submit"><i class="bx bx-save"></i> Save privacy controls</button></div>
+                  <div class="form-status" data-status></div>
+                </form>
+                <form class="account-deletion-box" id="accountDeletionForm">
+                  <div><span class="eyebrow"><i class="bx bx-error-circle"></i> Permanent action</span>
+                    <h3>Delete this SwapLabs account</h3>
+                    <p>Download your data first. Deletion removes your profile and personal activity, closes hosted rooms, and pseudonymizes records that must remain for safety or the immutable credit ledger.</p>
+                  </div>
+                  <div class="form-grid">
+                    <div class="field"><label>Current password</label><input name="password" type="password" autocomplete="current-password" required></div>
+                    <div class="field"><label>Type the confirmation shown below</label><input name="confirmation" required id="accountDeletionConfirmation"></div>
+                  </div>
+                  <p class="deletion-confirm-copy" id="accountDeletionPrompt"></p>
+                  <div class="form-actions end"><button class="btn btn-danger" type="submit"><i class="bx bx-trash"></i> Delete my account permanently</button></div>
+                  <div class="form-status" data-status></div>
+                </form>
+              </section>
+
+              <form class="profile-card" id="passwordForm"><span id="security"></span>
+                <h2>Change password</h2>
+                <p class="muted">Confirm your existing password before setting a new one.</p>
+                <div class="form-grid" style="margin-top:22px">
+                  <div class="field field-row-action"><label>Current password</label><input id="currentPassword" name="current_password" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" data-password-toggle="currentPassword" aria-label="Show password"><i class="bx bx-show"></i></button></div>
+                  <div class="field field-row-action"><label>New password</label><input id="newPassword" name="new_password" type="password" autocomplete="new-password" minlength="10" required><button class="password-toggle" type="button" data-password-toggle="newPassword" aria-label="Show password"><i class="bx bx-show"></i></button></div>
+                </div>
+                <div class="form-actions end"><button class="btn" type="submit"><i class="bx bx-key"></i> Update password</button></div>
+                <div class="form-status" data-status></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

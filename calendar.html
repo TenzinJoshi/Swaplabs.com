@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Calendar and Availability — SwapLabs</title>
+    <meta name="description" content="Schedule SwapLabs sessions, manage weekly availability, convert timezones, set reminders, reschedule, cancel, and export events.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="ops-page" data-operations-page="calendar">
+
+      <section class="ops-hero">
+        <div class="container ops-hero-grid">
+          <div>
+            <span class="ops-kicker"><i class="bx bx-calendar"></i> One dependable schedule</span>
+            <h1>Turn good conversations into <span>sessions that actually happen.</span></h1>
+            <p>Publish your availability, invite members, see every event in your timezone, receive SwapBot reminders, and keep rescheduling or cancellation history connected to the original session.</p>
+            <div class="ops-hero-actions"><a class="btn btn-primary" href="#calendarWorkspace"><i class="bx bx-calendar-plus"></i> Schedule a session</a><a class="btn" href="notifications.html"><i class="bx bx-message-square-dots"></i> Return to Inbox</a></div>
+          </div>
+          <aside class="ops-hero-panel calendar-preview-panel">
+            <div class="ops-hero-panel-head"><span>Your scheduling standard</span><i class="bx bx-time-five"></i></div>
+            <div class="calendar-preview-date"><span id="calendarHeroMonth">Calendar</span><strong id="calendarHeroDay">--</strong><small id="calendarHeroWeekday">Local time</small></div>
+            <div class="calendar-preview-slot"><i class="bx bx-globe"></i>
+              <div><strong id="calendarHeroTime">--:--</strong><span id="calendarHeroZone">Detecting timezone</span></div>
+            </div>
+            <div class="ops-check-row"><i class="bx bx-check"></i><span>Google, Outlook, and ICS export</span></div>
+            <div class="ops-check-row"><i class="bx bx-check"></i><span>Saved reschedule and cancellation history</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="ops-shell-section" id="calendarWorkspace">
+        <div class="container">
+          <div class="server-required" data-server-required><strong>Start the SwapLabs Python server first.</strong> Scheduling requires your protected local account session.</div>
+          <div class="ops-auth-gate" id="opsAuthGate" hidden><i class="bx bx-lock-alt"></i>
+            <div>
+              <h2>Log in to manage your calendar</h2>
+              <p>Your availability, invitations, reminders, and exports are private account features.</p>
+            </div><a class="btn btn-primary" href="login.html">Log in</a>
+          </div>
+          <div class="ops-loading" id="opsLoading"><i class="bx bx-loader-alt bx-spin"></i><span>Aligning your events and timezone</span></div>
+
+          <div id="calendarApp" hidden>
+            <div class="ops-stat-grid">
+              <article><i class="bx bx-calendar-check"></i><strong id="calendarUpcoming">0</strong><span>Upcoming sessions</span></article>
+              <article><i class="bx bx-group"></i><strong id="calendarParticipants">0</strong><span>Member connections</span></article>
+              <article><i class="bx bx-bell"></i><strong id="calendarReminders">0</strong><span>Active reminders</span></article>
+              <article><i class="bx bx-globe"></i><strong id="calendarTimezoneShort">UTC</strong><span>Your saved timezone</span></article>
+            </div>
+
+            <div class="calendar-layout">
+
+              <section class="ops-panel calendar-agenda-panel">
+                <div class="ops-panel-head">
+                  <div><span class="ops-overline">Your agenda</span>
+                    <h2>Sessions and workshops</h2>
+                    <p>All event times below are converted for your device, with the event timezone preserved in the detail.</p>
+                  </div>
+                  <div class="ops-segmented" id="calendarFilters"><button class="active" data-calendar-filter="upcoming" type="button">Upcoming</button><button data-calendar-filter="all" type="button">All</button><button data-calendar-filter="cancelled" type="button">Cancelled</button></div>
+                </div>
+                <div class="calendar-date-rail" id="calendarDateRail"></div>
+                <div class="calendar-event-list" id="calendarEventList"></div>
+              </section>
+
+              <aside class="calendar-compose-column">
+                <form class="ops-panel ops-form-panel" id="calendarEventForm">
+                  <div class="ops-panel-head compact">
+                    <div><span class="ops-overline">Plan together</span>
+                      <h2 id="calendarFormTitle">Schedule a session</h2>
+                    </div><i class="bx bx-calendar-plus"></i>
+                  </div>
+                  <input type="hidden" name="event_id">
+                  <input type="hidden" name="conversation_id" id="calendarConversationId">
+                  <label class="ops-field"><span>Session title</span><input name="title" maxlength="160" required placeholder="Portfolio feedback exchange"></label>
+                  <label class="ops-field"><span>Description</span><textarea name="description" rows="4" maxlength="2000" placeholder="Goals, preparation, and what each person will contribute"></textarea></label>
+                  <div class="ops-form-grid two">
+                    <label class="ops-field"><span>Starts</span><input name="starts_at" type="datetime-local" required></label>
+                    <label class="ops-field"><span>Ends</span><input name="ends_at" type="datetime-local" required></label>
+                  </div>
+                  <label class="ops-field"><span>Event timezone</span><select name="timezone" id="calendarTimezone" required></select><small>The saved event is converted to UTC and displayed correctly for every participant.</small></label>
+                  <label class="ops-field"><span>Invite members</span><select name="participant_ids" id="calendarParticipantsSelect" multiple size="5"></select><small>Use Command or Control to choose more than one member. Every selected member receives the same detailed meeting thread in their Inbox.</small></label>
+                  <div class="ops-form-grid two">
+                    <label class="ops-field"><span>Location</span><input name="location" maxlength="180" placeholder="SwapLabs Live Room"></label>
+                    <label class="ops-field"><span>Meeting URL</span><input name="meeting_url" type="url" maxlength="400" placeholder="https://"></label>
+                  </div>
+                  <fieldset class="reminder-fieldset">
+                    <legend>SwapBot reminders</legend><label><input type="checkbox" name="reminder" value="10080"> One week</label><label><input type="checkbox" name="reminder" value="1440" checked> One day</label><label><input type="checkbox" name="reminder" value="60" checked> One hour</label><label><input type="checkbox" name="reminder" value="15"> 15 minutes</label>
+                  </fieldset>
+                  <div class="ops-form-status" data-ops-status></div>
+                  <div class="ops-form-actions"><button class="btn" id="calendarFormReset" type="button">Clear</button><button class="btn btn-primary" type="submit"><i class="bx bx-calendar-check"></i> Save session</button></div>
+                </form>
+              </aside>
+            </div>
+
+            <section class="ops-panel availability-panel" id="availability">
+              <div class="ops-panel-head">
+                <div><span class="ops-overline">Weekly availability</span>
+                  <h2>Show people when an exchange can fit.</h2>
+                  <p>Store multiple windows per day, a scheduling buffer, and the timezone those windows belong to.</p>
+                </div>
+                <div class="timezone-live-card"><i class="bx bx-world"></i>
+                  <div><strong id="availabilityClock">--:--</strong><span id="availabilityZoneLabel">Your timezone</span></div>
+                </div>
+              </div>
+              <form id="availabilityForm">
+                <div class="availability-settings"><label class="ops-field"><span>Availability timezone</span><select name="timezone" id="availabilityTimezone" required></select></label><label class="ops-field"><span>Buffer between sessions</span><select name="buffer_minutes">
+                      <option value="0">No buffer</option>
+                      <option value="10">10 minutes</option>
+                      <option value="15">15 minutes</option>
+                      <option value="30">30 minutes</option>
+                      <option value="45">45 minutes</option>
+                      <option value="60">1 hour</option>
+                      <option value="90">90 minutes</option>
+                      <option value="120">2 hours</option>
+                    </select></label></div>
+                <div class="availability-week" id="availabilityWeek"></div>
+                <div class="ops-form-status" data-ops-status></div>
+                <div class="ops-form-actions"><span>Changes apply to future scheduling suggestions; existing sessions keep their saved time.</span><button class="btn btn-primary" type="submit"><i class="bx bx-save"></i> Save availability</button></div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-explainer soft">
+        <div class="container">
+          <div class="ops-section-head">
+            <div><span class="ops-kicker"><i class="bx bx-transfer-alt"></i> Portable plans</span>
+              <h2>Your SwapLabs calendar should work with the calendar you already trust.</h2>
+              <p>Every saved event can move to another calendar without losing its title, duration, description, location, or cancellation state.</p>
+            </div>
+          </div>
+          <div class="ops-feature-grid three">
+            <article><i class="bx bxl-google"></i>
+              <h3>Google Calendar</h3>
+              <p>Open a prefilled Google event with UTC-safe dates, the session description, and its meeting location.</p>
+            </article>
+            <article><i class="bx bxl-microsoft"></i>
+              <h3>Outlook</h3>
+              <p>Compose the same saved session in Outlook with start, end, body, and location already prepared.</p>
+            </article>
+            <article><i class="bx bx-download"></i>
+              <h3>Universal ICS</h3>
+              <p>Download a standards-based file for Apple Calendar, Thunderbird, mobile calendars, and other compatible tools.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chats — SwapLabs</title>
+    <meta name="description" content="Full-screen SwapLabs messaging with attachments, read states, member safety controls, scheduling, and SwapBot account updates.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body class="inbox-page-body">
+
+    <div data-site-header></div>
+
+    <main class="ops-page inbox-page" data-operations-page="inbox">
+      <div class="server-required inbox-server-state" data-server-required><strong>Start the SwapLabs Python server first.</strong> Chats need a protected local account session.</div>
+      <div class="ops-auth-gate inbox-access-gate" id="opsAuthGate" hidden><i class="bx bx-lock-alt"></i>
+        <div>
+          <h2>Log in to open Chats</h2>
+          <p>Your conversations and files are private to your account.</p>
+        </div><a class="btn btn-primary" href="login.html">Log in</a>
+      </div>
+      <div class="ops-loading inbox-loading" id="opsLoading"><i class="bx bx-loader-alt bx-spin"></i><span>Opening your conversations</span></div>
+
+      <div class="inbox-app" id="inboxWorkspace" hidden>
+        <aside class="inbox-sidebar">
+          <div class="inbox-sidebar-head">
+            <div class="inbox-title-row">
+              <h1>Chats</h1><button class="inbox-more-button" type="button" id="inboxAccountTools" aria-label="Open account tools"><i class="bx bx-dots-horizontal-rounded"></i></button>
+            </div>
+            <div class="inbox-head-actions"><button class="inbox-action-button" id="inboxRefresh" type="button" aria-label="Refresh chats" title="Refresh chats"><i class="bx bx-refresh"></i></button><button class="inbox-action-button" id="inboxComposeToggle" type="button" aria-label="Start a new conversation" title="New conversation"><i class="bx bx-edit"></i></button></div>
+          </div>
+          <div class="inbox-new-chat" id="inboxNewChat" hidden><select id="newChatMember" aria-label="Choose a member">
+              <option value="">Choose a member</option>
+            </select><button class="inbox-start-button" id="newChatButton" type="button"><i class="bx bx-message-square-add"></i><span>Start chat</span></button></div>
+          <label class="ops-search inbox-search"><i class="bx bx-search"></i><input id="conversationSearch" type="search" placeholder="Search" aria-label="Search conversations"></label>
+          <div class="inbox-summary-row"><span><strong id="inboxUnreadCount">0</strong> unread</span><span><strong id="inboxConversationCount">0</strong> conversations</span></div>
+          <div class="conversation-list" id="conversationList"></div>
+        </aside>
+
+        <section class="chat-panel" id="chatPanel">
+          <div class="chat-empty" id="chatEmpty"><span class="chat-empty-icon"><i class="bx bx-message-rounded-dots"></i></span>
+            <h2>Your conversations live here</h2>
+            <p>Choose a chat or start a new one to exchange skills, files, and session plans.</p>
+          </div>
+          <div class="chat-active" id="chatActive" hidden>
+
+            <header class="chat-header">
+              <button class="inbox-action-button inbox-back" id="inboxBack" type="button" aria-label="Back to conversations"><i class="bx bx-left-arrow-alt"></i></button>
+              <div class="chat-heading" id="chatHeading"></div>
+              <div class="chat-header-actions"><a class="inbox-action-button" id="chatSchedule" href="calendar.html" title="Schedule session" aria-label="Schedule session"><i class="bx bx-calendar-plus"></i></a><button class="inbox-action-button" id="chatDetailsToggle" type="button" title="Conversation options" aria-label="Conversation options"><i class="bx bx-dots-horizontal-rounded"></i></button></div>
+            </header>
+            <div class="message-stream" id="messageStream" aria-live="polite"></div>
+            <div class="typing-line" id="typingLine" hidden><span></span><span></span><span></span><em>Typing</em></div>
+            <form class="message-composer" id="messageComposer">
+              <label class="attachment-button" for="messageAttachment" title="Attach a file"><i class="bx bx-plus"></i><span>Attach</span></label><input id="messageAttachment" name="attachment" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf,.txt,.md,.csv" hidden>
+              <div class="composer-input-wrap"><textarea id="messageBody" name="body" rows="1" maxlength="4000" placeholder="Type a message" aria-label="Type a message"></textarea>
+                <div class="attachment-preview" id="attachmentPreview" hidden></div>
+              </div>
+              <button class="message-send" type="submit" aria-label="Send message"><i class="bx bx-send"></i></button>
+            </form>
+          </div>
+        </section>
+
+        <aside class="inbox-details" id="inboxDetails" aria-label="Conversation and account tools">
+          <div class="inbox-details-head"><strong>Chat details</strong><button class="inbox-action-button" type="button" data-chat-details-close aria-label="Close details"><i class="bx bx-x"></i></button></div>
+          <div class="details-default" id="detailsDefault">
+            <span class="ops-overline">Account center</span>
+            <h2>Requests and shortcuts</h2>
+            <p>Manage follow requests and move from a conversation to a session.</p>
+            <div class="request-summary"><i class="bx bx-user-plus"></i>
+              <div><strong id="requestCount">0 follow requests</strong><span>Approve only people you recognize.</span></div>
+            </div>
+            <div class="follow-request-stack" id="followRequestStack"></div>
+            <div class="details-shortcuts"><a href="community.html"><i class="bx bx-user-find"></i><span><strong>Member directory</strong><small>Find people by skill</small></span><i class="bx bx-chevron-right"></i></a><a href="calendar.html"><i class="bx bx-calendar"></i><span><strong>Calendar</strong><small>Availability and sessions</small></span><i class="bx bx-chevron-right"></i></a><a href="credits.html"><i class="bx bx-wallet"></i><span><strong>Credit ledger</strong><small>Payments and disputes</small></span><i class="bx bx-chevron-right"></i></a></div>
+          </div>
+          <div class="details-conversation" id="detailsConversation" hidden></div>
+        </aside>
+        <button class="inbox-details-backdrop" id="inboxDetailsBackdrop" type="button" aria-label="Close conversation details"></button>
+      </div>
+
+      <div class="ops-modal" id="reportModal" hidden>
+        <div class="ops-modal-backdrop" data-close-modal></div>
+        <form class="ops-modal-card" id="reportForm">
+          <button class="ops-modal-close" type="button" data-close-modal aria-label="Close report form"><i class="bx bx-x"></i></button>
+          <span class="ops-kicker"><i class="bx bx-flag"></i> Safety report</span>
+          <h2>Send the conversation to moderation.</h2>
+          <p>The administrator receives the complete conversation evidence, selected message, member activity, and your explanation.</p>
+          <label class="ops-field"><span>Category</span><select name="category" required>
+              <option value="">Choose a category</option>
+              <option value="harassment">Harassment</option>
+              <option value="spam">Spam</option>
+              <option value="unsafe_content">Unsafe content</option>
+              <option value="fraud">Fraud or payment concern</option>
+              <option value="privacy">Privacy violation</option>
+              <option value="other">Other</option>
+            </select></label>
+          <label class="ops-field"><span>Specific message</span><select name="message_id" id="reportMessage">
+              <option value="">Entire conversation</option>
+            </select></label>
+          <label class="ops-field"><span>What happened?</span><textarea name="details" rows="5" maxlength="2000" required placeholder="Describe the behavior, timing, and why it needs review."></textarea></label>
+          <div class="ops-form-status" data-ops-status></div>
+          <div class="ops-form-actions"><button class="btn" type="button" data-close-modal>Cancel</button><button class="btn btn-primary" type="submit"><i class="bx bx-shield-quarter"></i> Submit secure report</button></div>
+        </form>
+      </div>
+    </main>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Administration — SwapLabs</title>
+    <meta name="description" content="Protected SwapLabs account administration and moderation panel.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="admin-main" data-auth-page="admin">
+
+      <section class="admin-topbar">
+        <div class="container admin-title-row">
+          <div><span class="eyebrow">Protected workspace</span>
+            <h1>Account administration</h1>
+            <p>Review all account data, annotate records, manage access, verification, and time credits.</p>
+          </div><a class="btn" href="profile.html"><i class="bx bx-user-circle"></i> My admin profile</a>
+        </div>
+      </section>
+
+      <section class="account-section" id="adminGate">
+        <div class="container">
+          <div class="server-required" data-server-required><strong>Start the SwapLabs Python server first.</strong> Administration is available only through the local application server.</div>
+          <div class="auth-layout">
+            <form class="auth-card admin-access-card" id="adminPageLoginForm">
+              <div class="auth-card-head">
+                <div>
+                  <h2>Verify administrator access</h2>
+                  <p>Enter the dedicated administrator ID and password.</p>
+                </div><span class="auth-card-icon"><i class="bx bx-shield-quarter"></i></span>
+              </div>
+              <div class="form-grid">
+                <div class="field"><label>Administrator ID</label><input name="admin_id" autocomplete="username" required></div>
+                <div class="field"><label>Administrator password</label><input name="password" type="password" autocomplete="current-password" required></div>
+              </div>
+              <div class="form-actions end"><button class="btn btn-primary" type="submit"><i class="bx bx-lock-open-alt"></i> Verify and continue</button></div>
+              <div class="form-status" data-status></div>
+            </form>
+            <aside class="auth-benefits">
+              <h2>Administrator permissions</h2>
+              <p>Member accounts never receive these controls.</p>
+              <div class="benefit-list">
+                <div class="benefit-item"><i class="bx bx-show"></i>
+                  <div><strong>Complete visibility</strong><span>Review all account and profile fields, timestamps, preferences, status, and balances.</span></div>
+                </div>
+                <div class="benefit-item"><i class="bx bx-edit-alt"></i>
+                  <div><strong>Private annotations</strong><span>Add moderation labels and internal notes that members cannot see or change.</span></div>
+                </div>
+                <div class="benefit-item"><i class="bx bx-block"></i>
+                  <div><strong>Account control</strong><span>Suspend, reactivate, verify, adjust credits, or permanently delete member accounts.</span></div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-dashboard" id="adminDashboard" hidden>
+        <div class="container">
+          <div class="admin-stat-grid">
+            <div class="admin-stat"><i class="bx bx-user"></i><strong id="statTotal">0</strong><span>Total accounts</span></div>
+            <div class="admin-stat"><i class="bx bx-group"></i><strong id="statMembers">0</strong><span>Member accounts</span></div>
+            <div class="admin-stat"><i class="bx bx-check-circle"></i><strong id="statActive">0</strong><span>Active accounts</span></div>
+            <div class="admin-stat"><i class="bx bx-block"></i><strong id="statSuspended">0</strong><span>Suspended</span></div>
+            <div class="admin-stat"><i class="bx bx-badge-check"></i><strong id="statVerified">0</strong><span>Verified profiles</span></div>
+            <div class="admin-stat"><i class="bx bx-time-five"></i><strong id="statCredits">0</strong><span>Total time credits</span></div>
+          </div>
+
+          <section class="admin-analytics">
+            <div class="admin-analytics-head">
+              <div><span class="eyebrow">Live account analytics</span>
+                <h2>Community data from every saved account</h2>
+                <p>Charts update whenever profiles, visibility, follows, credits, or account status changes. Every entered value remains available in the detailed data lists.</p>
+              </div><button class="btn btn-sm" id="adminRedrawCharts" type="button"><i class="bx bx-bar-chart-alt-2"></i> Redraw charts</button>
+            </div>
+            <div class="admin-chart-grid">
+              <article class="chart-card">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Account status</h3>
+                    <p>Active and suspended accounts</p>
+                  </div><i class="bx bx-doughnut-chart"></i>
+                </div><canvas id="chartStatus" height="230" aria-label="Account status doughnut chart"></canvas>
+                <div class="chart-legend" id="legendStatus"></div>
+              </article>
+              <article class="chart-card">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Profile visibility</h3>
+                    <p>Public and private member settings</p>
+                  </div><i class="bx bx-lock-open-alt"></i>
+                </div><canvas id="chartVisibility" height="230" aria-label="Profile visibility doughnut chart"></canvas>
+                <div class="chart-legend" id="legendVisibility"></div>
+              </article>
+              <article class="chart-card wide">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Member age distribution</h3>
+                    <p>Every supported age grouped into readable bands</p>
+                  </div><i class="bx bx-bar-chart"></i>
+                </div><canvas id="chartAges" height="250" aria-label="Age distribution bar chart"></canvas>
+                <div class="chart-data-list" id="dataAges"></div>
+              </article>
+              <article class="chart-card wide">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Countries represented</h3>
+                    <p>All user-entered country values</p>
+                  </div><i class="bx bx-world"></i>
+                </div><canvas id="chartCountries" height="270" aria-label="Country distribution horizontal bar chart"></canvas>
+                <div class="chart-data-list" id="dataCountries"></div>
+              </article>
+              <article class="chart-card">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Primary languages</h3>
+                    <p>Languages selected by members</p>
+                  </div><i class="bx bx-message-rounded-dots"></i>
+                </div><canvas id="chartLanguages" height="250" aria-label="Primary language bar chart"></canvas>
+                <div class="chart-data-list" id="dataLanguages"></div>
+              </article>
+              <article class="chart-card">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Credit distribution</h3>
+                    <p>Time-credit balance ranges</p>
+                  </div><i class="bx bx-time-five"></i>
+                </div><canvas id="chartCredits" height="250" aria-label="Time credit distribution bar chart"></canvas>
+                <div class="chart-data-list" id="dataCredits"></div>
+              </article>
+              <article class="chart-card wide">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Occupations and roles</h3>
+                    <p>All professional values represented in profiles</p>
+                  </div><i class="bx bx-briefcase-alt-2"></i>
+                </div><canvas id="chartOccupations" height="285" aria-label="Occupation horizontal bar chart"></canvas>
+                <div class="chart-data-list" id="dataOccupations"></div>
+              </article>
+              <article class="chart-card wide">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Skills across the community</h3>
+                    <p>Teaching and learning interests combined</p>
+                  </div><i class="bx bx-bulb"></i>
+                </div><canvas id="chartSkills" height="285" aria-label="Community skills horizontal bar chart"></canvas>
+                <div class="chart-data-list" id="dataSkills"></div>
+              </article>
+              <article class="chart-card full">
+                <div class="chart-card-head">
+                  <div>
+                    <h3>Account growth timeline</h3>
+                    <p>Cumulative registrations over time</p>
+                  </div><i class="bx bx-line-chart"></i>
+                </div><canvas id="chartGrowth" height="260" aria-label="Account growth line chart"></canvas>
+                <div class="chart-data-list" id="dataGrowth"></div>
+              </article>
+            </div>
+          </section>
+          <div class="admin-panel admin-toolbar">
+            <div class="admin-filters"><input class="search-input" id="adminSearch" placeholder="Search name, username, email, country, or skill"><select id="adminStatusFilter">
+                <option value="all">All statuses</option>
+                <option value="active">Active</option>
+                <option value="suspended">Suspended</option>
+              </select><select id="adminRoleFilter">
+                <option value="all">All roles</option>
+                <option value="member">Members</option>
+                <option value="admin">Administrators</option>
+              </select></div><button class="btn" id="adminRefresh" type="button"><i class="bx bx-refresh"></i> Refresh data</button>
+          </div>
+          <div class="admin-workspace">
+
+            <section class="admin-panel">
+              <div class="admin-panel-head">
+                <h2>Account records</h2><span id="adminResultCount">0 records</span>
+              </div>
+              <div class="admin-table-scroll">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Account</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Location</th>
+                      <th>Credits</th>
+                      <th>Updated</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminUserRows"></tbody>
+                </table>
+              </div>
+            </section>
+            <aside class="admin-panel admin-detail" id="adminDetail">
+              <div class="admin-detail-empty"><i class="bx bx-id-card"></i><strong>Select an account</strong>
+                <p>Complete account data and administration controls will appear here.</p>
+              </div>
+            </aside>
+          </div>
+
+          <section class="admin-panel audit-panel">
+            <div class="admin-panel-head">
+              <h2>Administration and account activity</h2><span>Latest 100 entries</span>
+            </div>
+            <div class="audit-list" id="adminAudit"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Feedback and Testimonials — SwapLabs</title>
+    <meta name="description" content="Rate your SwapLabs experience, send private feedback, or publish a testimonial to the rotating community belt on the homepage.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="platform-page" data-platform-page="feedback">
+
+      <section class="platform-hero">
+        <div class="container platform-hero-grid">
+          <div>
+            <span class="platform-kicker"><i class="bx bx-message-square-dots"></i> Feedback and testimonials</span>
+            <h1>Help the platform improve. <span class="platform-accent">Help another learner believe.</span></h1>
+            <p class="platform-hero-copy">Share what worked, what should change, and what your experience made possible. Keep your response private for the team or give clear permission to add it to the rotating testimonial belt on the SwapLabs homepage.</p>
+            <div class="platform-hero-actions">
+              <a class="btn btn-primary" href="#feedbackFormSection"><i class="bx bx-edit-alt"></i> Share feedback</a>
+              <a class="btn" href="#communityTestimonials"><i class="bx bx-show"></i> Read community testimonials</a>
+            </div>
+            <div class="platform-hero-note"><i class="bx bx-lock-alt"></i><span>Your email is never shown in a public testimonial. Only your chosen name, role, rating, title, and words are displayed when permission is given.</span></div>
+          </div>
+          <aside class="platform-hero-card">
+            <div class="hero-card-top"><span>Useful feedback answers</span><i class="bx bx-bulb"></i></div>
+            <h2 class="hero-card-title">What changed because you used SwapLabs?</h2>
+            <p class="hero-card-copy">Specific moments help the team make decisions and help future members understand the experience.</p>
+            <ul class="hero-card-list">
+              <li><i class="bx bx-target-lock"></i><span>What were you trying to learn, teach, build, or solve?</span></li>
+              <li><i class="bx bx-git-compare"></i><span>Which feature or person helped move you forward?</span></li>
+              <li><i class="bx bx-line-chart"></i><span>What practical result, confidence, or connection followed?</span></li>
+              <li><i class="bx bx-wrench"></i><span>What is one improvement that would make the experience stronger?</span></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="platform-section" id="feedbackFormSection">
+        <div class="container platform-form-layout">
+          <form class="platform-form platform-form-shell" id="feedbackForm">
+            <div class="platform-form-head">
+              <div>
+                <h2>Share your experience</h2>
+                <p>A public testimonial is optional. Honest private feedback is equally valuable.</p>
+              </div><i class="bx bx-message-alt-edit"></i>
+            </div>
+            <div class="platform-form-grid">
+              <div class="field"><label for="feedbackName">Display name</label><input id="feedbackName" name="name" autocomplete="name" maxlength="100" required placeholder="Name shown with your words"></div>
+              <div class="field"><label for="feedbackEmail">Email address <small>Never shown publicly</small></label><input id="feedbackEmail" name="email" autocomplete="email" type="email" maxlength="180" required placeholder="you@example.com"></div>
+              <div class="field full"><label for="feedbackRole">Your role or learning context</label><input id="feedbackRole" name="role" maxlength="120" required placeholder="For example: student, mentor, career changer, workshop participant"></div>
+              <div class="field full"><label>Your overall rating</label>
+                <div class="feedback-rating" role="radiogroup" aria-label="Overall rating"><button class="rating-choice" type="button" data-rating="1" aria-label="1 out of 5"><i class="bx bx-star"></i></button><button class="rating-choice" type="button" data-rating="2" aria-label="2 out of 5"><i class="bx bx-star"></i></button><button class="rating-choice" type="button" data-rating="3" aria-label="3 out of 5"><i class="bx bx-star"></i></button><button class="rating-choice" type="button" data-rating="4" aria-label="4 out of 5"><i class="bx bx-star"></i></button><button class="rating-choice" type="button" data-rating="5" aria-label="5 out of 5"><i class="bx bx-star"></i></button><input id="feedbackRating" name="rating" type="hidden" required></div>
+              </div>
+              <div class="field full"><label for="feedbackTitle">Testimonial title</label><input id="feedbackTitle" name="title" maxlength="140" required placeholder="Summarize the most meaningful part"></div>
+              <div class="field full"><label for="feedbackMessage">Your feedback <small>Up to 1,800 characters</small></label><textarea id="feedbackMessage" name="message" rows="8" maxlength="1800" required placeholder="Describe the goal, experience, result, and any improvement you would recommend."></textarea>
+                <div class="character-count"><span id="feedbackCharacterCount">0</span> / 1,800</div>
+              </div>
+              <label class="platform-check field full"><input id="feedbackPermission" name="permission_to_publish" type="checkbox"><span><strong>Add this testimonial to the rotating homepage belt.</strong><span>I give SwapLabs permission to publish my display name, role, rating, title, and testimonial. My email will remain private.</span></span></label>
+            </div>
+            <div class="platform-form-actions">
+              <p>You can submit private feedback by leaving publication permission unchecked. Administrators can review every saved response.</p><button class="btn btn-primary" type="submit"><i class="bx bx-send"></i> Submit feedback</button>
+            </div>
+            <div class="platform-form-status" data-platform-status role="status" aria-live="polite"></div>
+          </form>
+          <aside class="platform-side-stack">
+            <div class="testimonial-preview" aria-label="Testimonial preview">
+              <i class="bx bxs-quote-left"></i>
+              <blockquote id="testimonialPreviewMessage">Your testimonial preview will appear here as you write.</blockquote>
+              <div class="testimonial-preview-person"><span id="testimonialPreviewInitials">SL</span>
+                <div><strong id="testimonialPreviewName">Your name</strong><small id="testimonialPreviewRole">Your role or learning context</small></div>
+              </div>
+            </div>
+            <article class="platform-side-card">
+              <h3><i class="bx bx-show"></i> Public with permission</h3>
+              <p>Approved public fields are added immediately to the homepage belt and the community testimonial section on this page.</p>
+            </article>
+            <article class="platform-side-card">
+              <h3><i class="bx bx-hide"></i> Private without permission</h3>
+              <p>The response remains visible only inside the protected administrative content workspace and is not returned by the public testimonial API.</p>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="platform-section tint" id="communityTestimonials">
+        <div class="container">
+          <div class="platform-section-head">
+            <div class="platform-heading"><span class="platform-kicker"><i class="bx bx-group"></i> Community voices</span>
+              <h2>Published by members who chose to share.</h2>
+              <p>These testimonials come from saved feedback records with explicit publication permission.</p>
+            </div><a class="btn" href="swaplabs.html#testimonialBelt"><i class="bx bx-carousel"></i> View the homepage belt</a>
+          </div>
+          <div class="platform-grid-3" id="feedbackCommunityGrid">
+            <div class="platform-loading"><i class="bx bx-loader-alt"></i>Loading community testimonials.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform-section">
+        <div class="container">
+          <div class="platform-heading center"><span class="platform-kicker"><i class="bx bx-git-pull-request"></i> From feedback to action</span>
+            <h2>Your response enters a real product loop.</h2>
+            <p>Public praise is useful, but clear friction and constructive criticism are what improve the service.</p>
+          </div>
+          <div class="platform-grid-4">
+            <article class="platform-card"><span class="platform-mini-label">Collect</span><span class="platform-card-icon"><i class="bx bx-inbox"></i></span>
+              <h3>Response saved</h3>
+              <p>Rating, context, words, publication choice, and member reference are stored together.</p>
+            </article>
+            <article class="platform-card"><span class="platform-mini-label">Understand</span><span class="platform-card-icon"><i class="bx bx-search-alt"></i></span>
+              <h3>Patterns reviewed</h3>
+              <p>Administrators can compare themes across learning, workshops, support, accessibility, and community tools.</p>
+            </article>
+            <article class="platform-card"><span class="platform-mini-label">Decide</span><span class="platform-card-icon"><i class="bx bx-list-check"></i></span>
+              <h3>Changes prioritized</h3>
+              <p>Frequency, severity, affected goals, and effort help turn feedback into a realistic improvement order.</p>
+            </article>
+            <article class="platform-card"><span class="platform-mini-label">Share</span><span class="platform-card-icon"><i class="bx bx-carousel"></i></span>
+              <h3>Stories build trust</h3>
+              <p>With permission, testimonials help future members see practical outcomes in the words of real participants.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform-section soft-pink">
+        <div class="container">
+          <div class="platform-heading center"><span class="platform-kicker"><i class="bx bx-help-circle"></i> Feedback questions</span>
+            <h2>Your words, your publication choice.</h2>
+          </div>
+          <div class="faq-list" style="margin:auto">
+            <article class="faq-item"><button class="faq-q">Will my email appear on the homepage?<span>+</span></button>
+              <div class="faq-a">No. Public testimonial responses include your chosen display name, role, rating, title, message, and date. Email stays inside the protected administrative record.</div>
+            </article>
+            <article class="faq-item"><button class="faq-q">What happens if I do not grant publication permission?<span>+</span></button>
+              <div class="faq-a">The feedback is saved privately for administrators. It does not appear in the public API, this page’s community section, or the homepage testimonial belt.</div>
+            </article>
+            <article class="faq-item"><button class="faq-q">Can administrators moderate a published testimonial?<span>+</span></button>
+              <div class="faq-a">Yes. Administrators can correct the saved title, role, rating, or message, feature it, change publication status, add private notes, or delete the record.</div>
+            </article>
+            <article class="faq-item"><button class="faq-q">Should a serious problem be submitted as feedback?<span>+</span></button>
+              <div class="faq-a">Use Complaint when you need a formal reviewed resolution. Use Report for harassment, fraud, threats, unsafe behavior, or inappropriate content.</div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

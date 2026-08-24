@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Log in — SwapLabs</title>
+    <meta name="description" content="Log in to your SwapLabs member profile or administrator workspace.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="account-main" data-auth-page="login">
+
+      <section class="account-hero">
+        <div class="container account-hero-grid">
+          <div><span class="eyebrow">Your SwapLabs account</span>
+            <h1>Continue learning with your community.</h1>
+            <p>Members can access the complete platform and manage their own profile. Administrators use a separate protected sign-in with a dedicated ID.</p>
+          </div>
+          <div class="account-security-note"><i class="bx bx-shield-quarter"></i>
+            <div><strong>Protected local accounts</strong><span>Passwords are securely hashed, sessions use protected cookies, and account changes are recorded in the administration log.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="account-section">
+        <div class="container">
+          <div class="server-required" data-server-required><strong>Start the SwapLabs Python server first.</strong> Account features cannot run from a file URL. Open the site through the local address shown by the launcher.</div>
+          <div class="current-session-banner" data-current-session hidden></div>
+          <div class="auth-layout">
+            <div class="auth-stack">
+              <form class="auth-card" id="memberLoginForm">
+                <div class="auth-card-head">
+                  <div>
+                    <h2>Member login</h2>
+                    <p>Use either your username or registered email address.</p>
+                  </div><span class="auth-card-icon"><i class="bx bx-user"></i></span>
+                </div>
+                <div class="field"><label for="memberLogin">Username or email</label><input id="memberLogin" name="login" autocomplete="username" required placeholder="username or name@example.com"></div>
+                <div class="field field-row-action"><label for="memberPassword">Password</label><input id="memberPassword" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button class="password-toggle" type="button" data-password-toggle="memberPassword" aria-label="Show password"><i class="bx bx-show"></i></button></div>
+                <div class="form-actions"><span class="muted">New to SwapLabs? <a href="register.html" style="color:var(--indigo);font-weight:700">Create an account</a></span><button class="btn btn-primary" type="submit"><i class="bx bx-log-in"></i> Log in</button></div>
+                <div class="form-status" data-status></div>
+              </form>
+              <form class="auth-card admin-access-card" id="adminLoginForm">
+                <div class="auth-card-head">
+                  <div>
+                    <h2>Administrator access</h2>
+                    <p>This area requires the private administrator ID and password.</p>
+                  </div><span class="auth-card-icon"><i class="bx bx-lock-alt"></i></span>
+                </div>
+                <div class="form-grid">
+                  <div class="field"><label for="adminId">Administrator ID</label><input id="adminId" name="admin_id" autocomplete="username" required placeholder="Enter administrator ID"></div>
+                  <div class="field field-row-action"><label for="adminPassword">Administrator password</label><input id="adminPassword" name="password" type="password" autocomplete="current-password" required placeholder="Enter administrator password"><button class="password-toggle" type="button" data-password-toggle="adminPassword" aria-label="Show password"><i class="bx bx-show"></i></button></div>
+                </div>
+                <div class="form-actions end"><button class="btn" type="submit"><i class="bx bx-shield-quarter"></i> Open admin panel</button></div>
+                <div class="form-status" data-status></div>
+              </form>
+            </div>
+            <aside class="auth-benefits"><span class="eyebrow">Account access</span>
+              <h2>Your work stays connected across SwapLabs.</h2>
+              <p>Profile changes appear in the shared header and registered member directory throughout the site.</p>
+              <div class="benefit-list">
+                <div class="benefit-item"><i class="bx bx-id-card"></i>
+                  <div><strong>One complete profile</strong><span>Manage identity, location, goals, teaching skills, learning interests, and availability.</span></div>
+                </div>
+                <div class="benefit-item"><i class="bx bx-lock-open-alt"></i>
+                  <div><strong>Read-only community access</strong><span>Members can view the complete platform and directory without changing other accounts.</span></div>
+                </div>
+                <div class="benefit-item"><i class="bx bx-check-shield"></i>
+                  <div><strong>Clear permissions</strong><span>Only the administrator can annotate, suspend, verify, adjust, or delete member records.</span></div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

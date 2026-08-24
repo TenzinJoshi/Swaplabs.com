@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>SwapLabs Inbox QA comparison</title>
+    <style>
+      * {
+        box-sizing: border-box
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: #000
+      }
+
+      .compare {
+        width: 1369px;
+        height: 450px;
+        display: grid;
+        grid-template-columns: 684.5px 684.5px
+      }
+
+      .frame {
+        position: relative;
+        width: 684.5px;
+        height: 450px;
+        overflow: hidden
+      }
+
+      .frame img {
+        width: 684.5px;
+        height: 450px;
+        display: block
+      }
+
+      .label {
+        position: absolute;
+        z-index: 2;
+        left: 8px;
+        top: 8px;
+        padding: 5px 8px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, .8);
+        color: #fff;
+        font: 700 9px system-ui, sans-serif;
+        letter-spacing: .04em
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <main class="compare">
+
+      <section class="frame"><span class="label">REFERENCE</span><img src="qa-inbox-reference-normalized.png" alt="Reference inbox"></section>
+
+      <section class="frame"><span class="label">IMPLEMENTATION</span><img src="qa-inbox-desktop-pass2.png" alt="Rendered SwapLabs inbox"></section>
+    </main>
+  </body>
+
+</html>

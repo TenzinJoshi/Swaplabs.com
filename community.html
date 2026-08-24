@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Member Community — SwapLabs</title>
+    <meta name="description" content="Search real SwapLabs members, explore public profiles, and request access to private profiles.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main class="community-main" data-auth-page="community">
+
+      <section class="community-hero">
+        <div class="container community-hero-grid">
+          <div><span class="eyebrow">Real member directory</span>
+            <h1>Find people who can help you grow.</h1>
+            <p>Search every active SwapLabs member by name, username, occupation, professional role, country, language, interest, or skill. Privacy controls are respected at every step.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="#communityDirectory"><i class="bx bx-search"></i> Search members</a><a class="btn" href="notifications.html"><i class="bx bx-bell"></i> Follow requests</a></div>
+          </div>
+          <div class="community-privacy-card"><i class="bx bx-shield-quarter"></i>
+            <h2>Profiles stay member controlled.</h2>
+            <p>Public profiles are open to the community. Private profiles show only identity basics until the owner accepts your follow request.</p>
+            <div class="community-privacy-row"><span><i class="bx bx-world"></i> Public</span><span><i class="bx bx-lock-alt"></i> Private</span><span><i class="bx bx-user-check"></i> Following</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="community-directory" id="communityDirectory">
+        <div class="container">
+          <div class="community-stat-grid">
+            <div><strong id="communityTotal">0</strong><span>active profiles</span></div>
+            <div><strong id="communityPublic">0</strong><span>public profiles</span></div>
+            <div><strong id="communityPrivate">0</strong><span>private profiles</span></div>
+            <div><strong id="communityCountries">0</strong><span>visible countries</span></div>
+          </div>
+          <div class="community-search-panel">
+            <div class="community-search-main"><i class="bx bx-search"></i><input id="communitySearch" placeholder="Search any member, username, role, country, language, interest, or skill" autocomplete="off"><kbd>/</kbd></div>
+            <div class="community-filter-row"><select id="communityVisibilityFilter">
+                <option value="all">All profile types</option>
+                <option value="public">Public profiles</option>
+                <option value="private">Private profiles</option>
+                <option value="following">People I follow</option>
+                <option value="requested">Pending requests</option>
+              </select><select id="communityCountryFilter">
+                <option value="all">All countries</option>
+              </select><select id="communitySort">
+                <option value="name">Sort by name</option>
+                <option value="followers">Most followed</option>
+                <option value="skills">Most skills</option>
+                <option value="newest">Recently listed</option>
+              </select><button class="btn btn-sm" id="communityClear" type="button"><i class="bx bx-reset"></i> Clear filters</button></div>
+          </div>
+          <div class="community-results-head">
+            <div>
+              <h2>SwapLabs members</h2>
+              <p id="communityResultCount">Loading registered profiles…</p>
+            </div><span class="privacy-explainer"><i class="bx bx-lock-alt"></i> Private fields remain hidden until access is approved.</span>
+          </div>
+          <div class="community-user-grid" id="communityUserGrid">
+            <div class="community-loading"><i class="bx bx-loader-alt bx-spin"></i> Loading real member profiles…</div>
+          </div>
+          <div class="community-empty" id="communityEmpty" hidden><i class="bx bx-user-x"></i>
+            <h3>No members match this search</h3>
+            <p>Try a different name, username, location, role, language, or skill.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="community-guidance">
+        <div class="container">
+          <div class="section-head center"><span class="eyebrow">Community connections</span>
+            <h2>Follow with purpose and respect.</h2>
+            <p>Use profiles to understand fit before requesting access or starting an exchange.</p>
+          </div>
+          <div class="grid-3">
+            <article class="card"><span class="icon-box"><i class="bx bx-search-alt"></i></span>
+              <h3>Search beyond job titles</h3>
+              <p>Skills, languages, interests, learning goals, and availability often reveal a stronger match than a title alone.</p>
+            </article>
+            <article class="card"><span class="icon-box"><i class="bx bx-lock-alt"></i></span>
+              <h3>Respect private profiles</h3>
+              <p>A follow request asks for access. Members can approve or delete it from their personal Notifications panel.</p>
+            </article>
+            <article class="card"><span class="icon-box"><i class="bx bx-message-square-detail"></i></span>
+              <h3>Add useful context</h3>
+              <p>After connecting, explain what you hope to learn, what you can offer, and why the member seems like a relevant match.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <div class="community-drawer-backdrop" id="communityDrawerBackdrop" hidden></div>
+      <aside class="community-drawer" id="communityDrawer" aria-label="Member profile details" hidden><button class="community-drawer-close" id="communityDrawerClose" type="button" aria-label="Close member profile"><i class="bx bx-x"></i></button>
+        <div id="communityDrawerContent"></div>
+      </aside>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>

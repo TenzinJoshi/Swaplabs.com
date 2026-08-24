@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Skill Matching — SwapLabs</title>
+    <meta name="description" content="Find explainable SwapLabs matches using skills, goals, teaching style, format, timezone, availability, languages, and reliability.">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body class="member-portal-body">
+
+    <div data-site-header></div>
+
+    <main class="member-portal" data-member-portal="matching">
+
+      <section class="member-portal-hero matching-portal-hero">
+        <div class="container matching-hero-grid">
+          <div>
+            <span class="eyebrow"><i class="bx bx-git-compare"></i> Explainable member matching</span>
+            <h1>Find a person who fits the way you want to learn.</h1>
+            <p>Search real SwapLabs profiles with transparent scoring across skills, goals, style, format, timezone, availability, language, history, and reliability.</p>
+            <div class="matching-hero-proof"><span><i class="bx bx-check-shield"></i> No popularity-only ranking</span><span><i class="bx bx-time-five"></i> Real overlap detection</span><span><i class="bx bx-show"></i> Every point explained</span></div>
+          </div>
+          <aside class="matching-score-preview" aria-label="Example match score">
+            <div class="match-score-ring" style="--score:92"><strong>92</strong><span>match score</span></div>
+            <div><span class="availability-pill available"><i class="bx bxs-circle"></i> Shared time this week</span>
+              <h2>A score you can inspect.</h2>
+              <p>Open “Why this match?” on any result to see the points awarded for every factor.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section member-portal-section">
+        <div class="container">
+          <div class="portal-loading" id="matchingLoading"><i class="bx bx-loader-alt bx-spin"></i><span>Loading your matching profile…</span></div>
+          <div class="portal-locked" id="matchingLocked" hidden><span class="portal-locked-icon"><i class="bx bx-lock-alt"></i></span>
+            <h2>Sign in for real member matches</h2>
+            <p>Your skills, availability, languages, and preferences are needed to calculate useful compatibility.</p>
+            <div class="portal-empty-actions"><a class="btn btn-primary" href="login.html">Log in</a><a class="btn" href="register.html">Create account</a></div>
+          </div>
+
+          <div id="matchingPortal" hidden>
+
+            <section class="matching-demo" aria-labelledby="matchingDemoTitle">
+              <div><span class="portal-kicker">Short onboarding demo</span>
+                <h2 id="matchingDemoTitle">From a goal to a real conversation in three steps.</h2>
+              </div>
+              <div class="matching-demo-steps">
+                <article><span>1</span><i class="bx bx-slider-alt"></i>
+                  <div><strong>Describe the fit</strong>
+                    <p>Add the skill, your level, goal, preferred style, format, and language.</p>
+                  </div>
+                </article>
+                <article><span>2</span><i class="bx bx-bar-chart-square"></i>
+                  <div><strong>Inspect the score</strong>
+                    <p>Compare all nine factors and confirm there is realistic shared time.</p>
+                  </div>
+                </article>
+                <article><span>3</span><i class="bx bx-message-square-dots"></i>
+                  <div><strong>Start safely</strong>
+                    <p>Open a member conversation, agree on scope, then schedule the session.</p>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <div class="matching-workspace">
+              <aside class="matching-filter-panel">
+                <div class="panel-heading">
+                  <div><span class="portal-kicker">Match profile</span>
+                    <h2>What should fit?</h2>
+                  </div><button class="text-button" id="useSavedProfile" type="button"><i class="bx bx-refresh"></i> Use saved profile</button>
+                </div>
+                <form id="advancedMatchForm">
+                  <div class="field"><label for="matchLearnSkills">I want to learn</label><input id="matchLearnSkills" name="learn_skills" required placeholder="For example: Python, portrait photography"><small>Separate multiple skills with commas.</small></div>
+                  <div class="field"><label for="matchTeachSkills">I can teach</label><input id="matchTeachSkills" name="teach_skills" placeholder="For example: Figma, Spanish conversation"><small>Reciprocal fit can strengthen a recommendation.</small></div>
+                  <div class="grid-2">
+                    <div class="field"><label for="matchProficiency">My current level</label><select id="matchProficiency" name="proficiency">
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                        <option>Expert</option>
+                      </select></div>
+                    <div class="field"><label for="matchCategory">Skill category</label><select id="matchCategory" name="category">
+                        <option value="">All categories</option>
+                        <option>Technology</option>
+                        <option>Data</option>
+                        <option>Design</option>
+                        <option>Languages</option>
+                        <option>Creative</option>
+                        <option>Music</option>
+                        <option>Business</option>
+                        <option>Wellness</option>
+                        <option>Other skills</option>
+                      </select></div>
+                  </div>
+                  <div class="field"><label for="matchGoal">What outcome do you want?</label><textarea id="matchGoal" name="learning_goal" rows="4" placeholder="Describe what you want to be able to do after a few sessions."></textarea></div>
+                  <div class="grid-2">
+                    <div class="field"><label for="matchTeachingStyle">Preferred teaching style</label><select id="matchTeachingStyle" name="teaching_style">
+                        <option>Project-based</option>
+                        <option>Structured lessons</option>
+                        <option>Conversational</option>
+                        <option>Demonstration first</option>
+                        <option>Practice and feedback</option>
+                        <option>Flexible</option>
+                      </select></div>
+                    <div class="field"><label for="matchSessionFormat">Session format</label><select id="matchSessionFormat" name="session_format">
+                        <option>Remote or local</option>
+                        <option>Remote only</option>
+                        <option>Local only</option>
+                        <option>One-to-one sessions</option>
+                        <option>Group sessions</option>
+                        <option>Flexible</option>
+                      </select></div>
+                  </div>
+                  <div class="grid-2">
+                    <div class="field"><label for="matchTimezone">Your timezone</label><input id="matchTimezone" name="timezone" data-option-list="timezones" placeholder="Asia/Kolkata"></div>
+                    <div class="field"><label for="matchLanguages">Session languages</label><input id="matchLanguages" name="languages" data-multi-options="languages" placeholder="English, Hindi"></div>
+                  </div>
+                  <label class="match-strict-toggle"><input id="matchStrict" name="strict_skill_match" type="checkbox" checked><span><strong>Require a direct skill fit</strong><small>Turn this off to discover broader exchange partners.</small></span></label>
+                  <button class="btn btn-primary matching-submit" type="submit"><i class="bx bx-radar"></i> Calculate my matches</button>
+                  <div class="form-status" id="matchingStatus" role="status" aria-live="polite"></div>
+                </form>
+                <div class="matching-weight-note"><i class="bx bx-info-circle"></i>
+                  <p><strong>Skill fit carries 35 points.</strong> The other 65 points keep recommendations practical, compatible, and trustworthy.</p>
+                </div>
+              </aside>
+
+              <section class="matching-results-panel">
+                <div class="matching-results-head">
+                  <div><span class="portal-kicker">Real profile previews</span>
+                    <h2>Recommended members</h2>
+                    <p id="matchingResultSummary">Run the matcher to compare compatible members.</p>
+                  </div>
+                  <div class="matching-view-tools"><span class="availability-legend"><i class="bx bxs-circle"></i> Availability uses both calendars</span></div>
+                </div>
+                <div class="match-results-list" id="matchResults"></div>
+                <div class="match-empty-state" id="matchEmpty" hidden><span><i class="bx bx-radar"></i></span>
+                  <h3>No strong match found yet</h3>
+                  <p>Try a broader skill name, choose another category, or add more availability and languages to your profile.</p>
+                  <div class="portal-empty-actions"><button class="btn btn-primary" id="broadenMatch" type="button">Broaden this search</button><a class="btn" href="calendar.html">Update availability</a><a class="btn" href="profile.html">Edit profile</a></div>
+                </div>
+              </section>
+            </div>
+
+            <section class="matching-method-section">
+              <div class="section-head center"><span class="portal-kicker">Transparent by design</span>
+                <h2>What each recommendation considers</h2>
+                <p>Compatibility is recalculated from live account data whenever you search.</p>
+              </div>
+              <div class="matching-factor-grid">
+                <article><i class="bx bx-transfer"></i><strong>Skill fit</strong><span>35 points</span>
+                  <p>Direct teaching fit plus reciprocal exchange potential.</p>
+                </article>
+                <article><i class="bx bx-target-lock"></i><strong>Learning goal</strong><span>10 points</span>
+                  <p>How closely a profile supports your desired outcome.</p>
+                </article>
+                <article><i class="bx bx-chalkboard"></i><strong>Teaching style</strong><span>10 points</span>
+                  <p>Project, structure, conversation, practice, or flexibility.</p>
+                </article>
+                <article><i class="bx bx-video"></i><strong>Session format</strong><span>10 points</span>
+                  <p>Remote, local, individual, group, or flexible sessions.</p>
+                </article>
+                <article><i class="bx bx-calendar-check"></i><strong>Schedule overlap</strong><span>15 points</span>
+                  <p>Shared weekly windows after timezone conversion.</p>
+                </article>
+                <article><i class="bx bx-world"></i><strong>Language</strong><span>8 points</span>
+                  <p>Primary and additional languages from both profiles.</p>
+                </article>
+                <article><i class="bx bx-signal-5"></i><strong>Proficiency</strong><span>5 points</span>
+                  <p>Whether the teacher’s listed level supports yours.</p>
+                </article>
+                <article><i class="bx bx-history"></i><strong>Session history</strong><span>4 points</span>
+                  <p>Completed sessions and member ratings, with a fair new-user state.</p>
+                </article>
+                <article><i class="bx bx-shield-quarter"></i><strong>Reliability</strong><span>3 points</span>
+                  <p>Attendance and cancellation history, not popularity.</p>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+
+    <script src="swaplabs-dashboard.js"></script>
+  </body>
+
+</html>

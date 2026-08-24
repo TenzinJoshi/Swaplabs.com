@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SwapLabs — Learn Anything. Teach Everything.</title>
+    <meta name="description" content="SwapLabs helps people exchange skills, track time credits, and learn from one another.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="swaplabs.css">
+  </head>
+
+  <body>
+
+    <div data-site-header></div>
+
+    <main>
+
+      <section class="hero">
+        <div class="container hero-grid">
+          <div><span class="eyebrow">A fairer way to learn</span>
+            <h1 class="home-live-heading"><span class="gradient-text" data-static-motto>Learn Anything. Teach Everything.</span><span class="home-skill-typewriter" aria-label="Skills currently available"><span class="home-skill-typewriter-label"><i class="bx bx-pulse"></i> Available now</span><span class="home-skill-typewriter-copy">Learn <strong data-live-skill-typewriter>skills from members</strong><span class="typewriter-cursor" aria-hidden="true"></span></span></span></h1>
+            <p class="hero-copy">SwapLabs matches people who want to exchange practical knowledge. No awkward pricing and no gatekeeping—just useful sessions powered by time credits.</p>
+            <div class="hero-actions"><a class="btn btn-primary" href="browse-skills.html">Browse <span data-platform-metric="skills">—</span> skills</a><a class="btn" href="how-it-works.html">See how it works</a></div>
+            <div class="hero-proof">
+              <div><strong data-platform-metric="active_members">—</strong><span>active members</span></div>
+              <div><strong><span data-platform-metric="countries">—</span> countries</strong><span>represented</span></div>
+              <div><strong>4.9/5</strong><span>session rating</span></div>
+            </div>
+          </div>
+          <div class="match-panel">
+            <div class="panel-title">
+              <h3>Find your first match</h3><span class="status-dot"><i class="bx bxs-circle"></i> Live member data</span>
+            </div>
+            <form id="matchForm">
+              <div class="field"><label for="homeTeachSkills">I can teach</label><input id="homeTeachSkills" name="teach_skills" required placeholder="e.g. Python, guitar, French"></div>
+              <div class="field"><label for="homeLearnSkills">I want to learn</label><input id="homeLearnSkills" name="learn_skills" required placeholder="e.g. Figma, cooking, photography"></div>
+              <div class="field"><label for="homeSessionFormat">Session preference</label><select id="homeSessionFormat" name="session_format">
+                  <option>Remote or local</option>
+                  <option>Remote only</option>
+                  <option>Local only</option>
+                </select></div><button class="btn btn-primary" style="width:100%">Find compatible people</button>
+            </form>
+            <div class="match-result" id="matchResult">
+              <div class="person"><span class="avatar"><i class="bx bx-radar"></i></span>
+                <div><strong>Opening the full matcher</strong><small>Your search will use real profiles and explain every score.</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head center"><span class="eyebrow">Your member operations hub</span>
+            <h2>From first message to a completed exchange</h2>
+            <p>Communication, scheduling, safety, and transparent time-credit records now work as one connected account system.</p>
+          </div>
+          <div class="grid-3">
+            <article class="card"><span class="icon-box"><i class="bx bx-message-square-dots"></i></span>
+              <h3>Real member Inbox</h3>
+              <p>Chat with any active member, share protected attachments, see typing and read states, mute a thread, block contact, or report activity with context.</p><a class="btn btn-sm" href="notifications.html">Open Inbox</a>
+            </article>
+            <article class="card"><span class="icon-box"><i class="bx bx-calendar"></i></span>
+              <h3>Timezone-aware calendar</h3>
+              <p>Publish weekly availability, schedule and reschedule sessions, receive SwapBot reminders, cancel responsibly, and export to Google, Outlook, or ICS.</p><a class="btn btn-sm" href="calendar.html">Open calendar</a>
+            </article>
+            <article class="card"><span class="icon-box"><i class="bx bx-wallet"></i></span>
+              <h3>Immutable credit ledger</h3>
+              <p>Trace every earning, payment, refund, correction, and dispute without rewriting the original record or hiding a balance change.</p><a class="btn btn-sm" href="credits.html">View credit ledger</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <div class="section-head center"><span class="eyebrow">Built for real exchange</span>
+            <h2>Everything needed to learn from another person</h2>
+            <p>Discovery, planning, communication, trust, and progress—all in one practical platform.</p>
+          </div>
+          <div class="grid-4">
+            <article class="card"><span class="icon-box"><i class="bx bx-git-compare"></i></span>
+              <h3>Smart matching</h3>
+              <p>Find people whose learning goals complement exactly what you can teach.</p>
+            </article>
+            <article class="card"><span class="icon-box"><i class="bx bx-time-five"></i></span>
+              <h3>Time credits</h3>
+              <p>Teach for one hour and earn one hour to spend learning any other skill.</p>
+            </article>
+            <article class="card"><span class="icon-box"><i class="bx bx-check-shield"></i></span>
+              <h3>Trusted profiles</h3>
+              <p>Verification, reviews, session history, and community reputation reduce uncertainty.</p>
+            </article>
+            <article class="card"><span class="icon-box"><i class="bx bx-trending-up"></i></span>
+              <h3>Progress paths</h3>
+              <p>Turn individual swaps into a structured path toward a meaningful goal.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container split">
+          <div>
+            <div class="section-head"><span class="eyebrow">How it works</span>
+              <h2>A useful exchange in three clear steps</h2>
+              <p>SwapLabs removes the admin so both people can focus on showing up and sharing well.</p>
+            </div><a class="btn btn-soft" href="how-it-works.html">Read the complete guide →</a>
+          </div>
+          <div class="steps">
+            <div class="step"><span class="step-num">1</span>
+              <div>
+                <h3>Build your profile</h3>
+                <p>List what you teach, what you want to learn, and when you are available.</p>
+              </div>
+            </div>
+            <div class="step"><span class="step-num">2</span>
+              <div>
+                <h3>Choose a match</h3>
+                <p>Review compatibility, ratings, learning style, and shared availability.</p>
+              </div>
+            </div>
+            <div class="step"><span class="step-num">3</span>
+              <div>
+                <h3>Meet and exchange</h3>
+                <p>Complete the session, leave feedback, and automatically settle time credits.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <div class="section-head"><span class="eyebrow">Popular right now</span>
+            <h2>Start with a skill people are actively sharing</h2>
+          </div>
+          <div class="grid-3">
+            <article class="card">
+              <div class="tags"><span class="tag">Technology</span><span class="tag">628 teachers</span></div>
+              <h3>Python for beginners</h3>
+              <p>Build strong fundamentals through practical, one-to-one coding sessions.</p><a class="btn btn-sm" href="browse-skills.html">Explore Python</a>
+            </article>
+            <article class="card">
+              <div class="tags"><span class="tag">Creative</span><span class="tag">412 teachers</span></div>
+              <h3>Product design</h3>
+              <p>Learn research, Figma, prototyping, critique, and design systems.</p><a class="btn btn-sm" href="browse-skills.html">Explore design</a>
+            </article>
+            <article class="card">
+              <div class="tags"><span class="tag">Languages</span><span class="tag">734 teachers</span></div>
+              <h3>Conversational Spanish</h3>
+              <p>Practice natural conversation with supportive native and fluent speakers.</p><a class="btn btn-sm" href="browse-skills.html">Explore Spanish</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head center"><span class="eyebrow">Community proof</span>
+            <h2>Learning works better when it feels mutual</h2>
+          </div>
+          <div class="grid-3">
+            <blockquote class="card story-quote">“I traded spreadsheet coaching for Italian conversation. Both of us arrived motivated because the exchange felt genuinely equal.”<p>— Lina, operations lead</p>
+            </blockquote>
+            <blockquote class="card story-quote">“My mentor helped me ship a portfolio; I helped her automate a weekly report. It was practical from day one.”<p>— Rohan, junior designer</p>
+            </blockquote>
+            <blockquote class="card story-quote">“The time-credit system lets me teach locally and learn remotely. That flexibility changed everything.”<p>— Alana, ceramic artist</p>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonial-belt-section" id="testimonialBelt">
+        <div class="container">
+          <div class="platform-section-head">
+            <div class="platform-heading"><span class="platform-kicker"><i class="bx bx-carousel"></i> Live community testimonial belt</span>
+              <h2>Member words keep moving through the platform.</h2>
+              <p>Every card below comes from a saved feedback response whose author gave permission to publish it. Hover or focus the belt to pause.</p>
+            </div><a class="btn btn-primary" href="feedback.html"><i class="bx bx-message-square-dots"></i> Add your experience</a>
+          </div>
+        </div>
+        <div class="testimonial-belt-window" aria-label="Rotating member testimonials">
+          <div class="testimonial-belt-track" id="testimonialBeltTrack">
+            <article class="testimonial-belt-card">
+              <div class="testimonial-rating"><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i></div>
+              <h3>A practical exchange from the first session</h3>
+              <p>I taught a spreadsheet workflow and received a thoughtful UX research lesson in return. The goals were clear and the exchange felt genuinely balanced.</p>
+              <div class="testimonial-person"><span class="platform-avatar">AP</span>
+                <div><strong>Arjun Patel</strong><span>Data analyst and learner</span></div>
+              </div>
+            </article>
+            <article class="testimonial-belt-card">
+              <div class="testimonial-rating"><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i></div>
+              <h3>The community makes progress visible</h3>
+              <p>Workshops, profiles, and learning paths connect naturally. I can share what I know and support work that has a real outcome.</p>
+              <div class="testimonial-person"><span class="platform-avatar pink">MC</span>
+                <div><strong>Maya Chen</strong><span>Product designer and mentor</span></div>
+              </div>
+            </article>
+            <article class="testimonial-belt-card">
+              <div class="testimonial-rating"><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i></div>
+              <h3>Small groups, serious encouragement</h3>
+              <p>The people I met were curious and generous. The platform gives enough structure to feel safe without making human learning feel mechanical.</p>
+              <div class="testimonial-person"><span class="platform-avatar purple">SM</span>
+                <div><strong>Sofia Martin</strong><span>Language coach</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-spectrum-section theme-contrast-island">
+        <div class="container home-spectrum-grid">
+          <div class="home-spectrum-copy">
+            <span class="eyebrow"><i class="bx bx-layer"></i> One connected learning loop</span>
+            <h2>Move from curiosity to a real exchange without losing momentum.</h2>
+            <p>Discovery is only useful when it leads somewhere. SwapLabs connects the people, plan, conversation, calendar, credits, and proof of progress behind every skill exchange.</p>
+            <div class="home-spectrum-actions">
+              <a class="btn btn-primary" href="dashboard.html"><i class="bx bx-grid-alt"></i> Open your dashboard</a>
+              <a class="btn" href="skill-matching.html"><i class="bx bx-git-compare"></i> Find an explained match</a>
+            </div>
+          </div>
+          <div class="home-spectrum-journey" aria-label="Connected learning journey">
+            <article class="home-spectrum-card"><span>01</span><i class="bx bx-search-alt"></i>
+              <div><strong>Discover</strong>
+                <p>Search real skills, mentors, workshops, projects, and member profiles.</p>
+              </div>
+            </article>
+            <article class="home-spectrum-card"><span>02</span><i class="bx bx-message-square-dots"></i>
+              <div><strong>Connect</strong>
+                <p>Understand the match score, start a conversation, and agree on an outcome.</p>
+              </div>
+            </article>
+            <article class="home-spectrum-card"><span>03</span><i class="bx bx-calendar-check"></i>
+              <div><strong>Exchange</strong>
+                <p>Find overlapping availability, schedule the session, and receive reminders.</p>
+              </div>
+            </article>
+            <article class="home-spectrum-card"><span>04</span><i class="bx bx-line-chart"></i>
+              <div><strong>Progress</strong>
+                <p>Settle credits, record completion, and choose the next useful action.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="swaplabs.js"></script>
+  </body>
+
+</html>
